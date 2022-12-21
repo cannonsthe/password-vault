@@ -61,3 +61,8 @@ body{
 .nav-t{
     height: 70px;
 }
+
+.t-box{
+    border-radius: 10px;
+    padding: 10px;
+}
