@@ -57,3 +57,7 @@ body{
 .half-opaque{
     opacity: 50%;
 }
+
+.nav-t{
+    height: 70px;
+}
