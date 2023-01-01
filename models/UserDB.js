@@ -6,34 +6,34 @@ class userDB {
 
     LoginUser(request, respond) {
 
-        //var email = request.body.usernamepassword;
+        var email = request.body.username; //Same deets 
         var username = request.body.username;
         var password = request.body.password;
         var msg = "";
 
-        var sql = "SELECT password FROM seniors_project.users where username = ?";
+        var sql = "SELECT password FROM seniors_project.users where (username = ? OR email = ?)"; //modified sql statement
 
-        db.query(sql, [username], function (error, result) {
+        db.query(sql, [username, email], function (error, result) { //impt for email to be here
             if (error) {
                 throw error;
             }
             else {
                 if (result.length > 0) {
                     if (password == result[0].password) {
-                        msg = "SUCCESS!"
+                        msg = "Login Successful!"
                         /* var token = jwt.sign(username, secret);
                         respond.json({result:token}); */
                         console.log(msg);
                     }
                     else {
-                        msg = "FAIL!";
+                        msg = "Wrong Password!";
                         var value1 = false;
                         respond.json({result:value1})
                         console.log(msg);
                     }
                 }
                 else {
-                    msg = "USER NOT FOUND!";
+                    msg = "User Not Found!";
                     console.log(msg);
                 }
             }
@@ -43,7 +43,7 @@ class userDB {
     adduser(request, respond) {
         /* var now = new Date(); */
 
-        var userObject = new User(request.params.uid, request.body.email,request.body.username, request.body.password);
+        var userObject = new User(request.params.uid, request.body.email, request.body.username, request.body.password);
         var sql = "INSERT INTO seniors_project.users (email, username, password) VALUES(?,?,?)";
 
         var values = [userObject.getEmail(), userObject.getUserName(), userObject.getPassword()];
