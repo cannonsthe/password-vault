@@ -5,7 +5,7 @@ var db = require('../db-connection');
 
 class userDB{
     getAllUser(callback){
-        var sql = "SELECT * from seniors_project.user";
+        var sql = "SELECT * from seniors_project.users";
         db.query(sql, callback);
     }
 
@@ -21,6 +21,18 @@ class userDB{
         var sql = "DELETE from users WHERE uid = ?";
         return db.query(sql, [uid], callback);
     }
+
+    loginUser(username, password, callback){
+        var sql = "SELECT password from seniors_project.users WHERE username = ?";
+        return db.query(sql, [username, password], callback);
+    }
+
+    /* pploginUser(username, password, callback){
+        var sql = "SELECT * from seniors_project.users WHERE username = ?";
+        return db.query(sql, [username, password], callback);
+    } */
+
+    
 }
 
 module.exports = userDB;

@@ -1,7 +1,7 @@
 function registerMe() {
     var addUser = new XMLHttpRequest();
 
-    addUser.open("POST", "http://127.0.0.1:8080/adduser", true);
+    addUser.open("POST", "http://127.0.0.1:8080/register", true);
 
     addUser.setRequestHeader("Content-Type", "application/json");
     addUser.onload = function () {
@@ -22,16 +22,16 @@ function registerMe() {
 function loginMe() {
 
     var loginUser = new XMLHttpRequest();
-    var email = document.getElementById("LoginEmailUsername").value;
+  //var email = document.getElementById("LoginEmailUsername").value;
     var username = document.getElementById("LoginEmailUsername").value;
     var password = document.getElementById("LoginPassword").value;
-    var payload = { email: email, username: username, password: password }
+    var payload = { username: username, password: password }
     
 
     loginUser.open("POST", "http://127.0.0.1:8080/login", true);
     loginUser.setRequestHeader("Content-Type", "application/json");
     loginUser.onload = function () {
-        if (loginUser.status === 200) {
+        if (loginUser.status == 200) {
           sessionStorage.setItem("currentuser", username);
           sessionStorage.setItem("password", password);
           console.error("YOU HAVE BEEN PEENED", loginUser.status);

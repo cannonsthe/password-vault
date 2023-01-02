@@ -178,4 +178,4 @@ function prepareMessage(msg) {
     return obj;
 }
 
-module.exports = userDB;
+//module.exports = userDB;

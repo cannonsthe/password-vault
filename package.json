@@ -1,16 +1,21 @@
 {
   "dependencies": {
     "aws-sdk": "^2.1282.0",
+    "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "jquery": "^3.6.3",
     "jsonwebtoken": "^9.0.0",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.20"
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0"
   },
-
-  "scripts":{
+  "scripts": {
     "start": "nodemon server.js"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.20"
   }
 }
