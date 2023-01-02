@@ -18,7 +18,6 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-userController.routeUsers(app);
 
 //This app starts a server and listens on port 8080 for connection
 var server = app.listen(port, host, function() {
@@ -27,3 +26,11 @@ var server = app.listen(port, host, function() {
 
     console.log("Example Apps listen at http://%s:%s", host, port);
 });
+
+//Route for Users
+app.route('/users').get(userController.getAllUser)
+app.route('/register').post(userController.addUser)
+app.route('/user/:uid').put(userController.updateUser)
+app.route('/users/:uid').delete(userController.deleteUser)
+
+

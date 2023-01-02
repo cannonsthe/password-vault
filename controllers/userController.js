@@ -1,25 +1,63 @@
-"use strict"
+"use strict";
 
-const userdb = require('../models/userDB');
+const UserDB = require('../models/UserDB');
+var userDB = new UserDB();
 
-var usersDBObject = new userdb();
+function getAllUser(request, respond){
+    userDB.getAllUser(function(error, result){
+        if(error){
+            respond.json(error);
+        }
+        else{
+            respond.json(result);
+        }
+    });
 
-function routeUsers(app) {
-    app.route('/login')
-        .post(usersDBObject.LoginUser);
-    app.route('/adduser')
-        .post(usersDBObject.adduser);
-    app.route('/getallusers')
-        .get(usersDBObject.getAllUsers);
-    /* app.route('/updatename/:user_id')
-        .put(usersDBObject.updateUserFirstName);
-    app.route('/updatepassword/:user_id')
-        .put(usersDBObject.updatePassword);
-    app.route('/deleteuser/:user_id')
-        .delete(usersDBObject.deleteuser);
-    app.route('/deleteuser')
-        .delete(usersDBObject.adduser);
-    app.route('/updateuser/:user_id')
-        .put(usersDBObject.updateuser); */
 }
-module.exports = { routeUsers };
+
+function addUser(request, respond){
+
+    var email = request.body.email;
+    var username = request.body.username;
+    var password  = request.body.password
+
+    userDB.addUser(email, username, password, function(error, result){
+        if(error){
+            respond.json(error);
+        }
+        else{
+            respond.json(result);
+        }
+    })
+}
+
+function updateUser(request, respond){
+
+    var email = request.body.username;
+    var username = request.body.username;
+    var password  = request.body.password
+
+    userDB.updateUser(email, username, password, function(error, result){
+        if(error){
+            respond.json(error);
+        }
+        else{
+            respond.json(result);
+        }
+    });
+}
+
+function deleteUser(request, respond){
+    var uid = request.params.uid;
+    userDB.deleteUser(uid, function(error, result){
+        if(error){
+            respond.json(error);
+        }
+        else{
+            respond.json(result);
+        }
+    });
+}
+
+
+module.exports = { getAllUser, updateUser, addUser, deleteUser };
