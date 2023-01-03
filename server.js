@@ -34,9 +34,12 @@ var server = app.listen(port, host, function() {
 //Route for Users
 app.route('/users').get(userController.getAllUser);
 app.route('/register').post(userController.addUser);
-app.route('/users/:uid').put(userController.updateUser);
 app.route('/users/:uid').delete(userController.deleteUser);
 app.route('/login').post(userController.loginUser);
+app.route('/useremail/:uid').put(userController.updateUseremail);
+app.route('/username/:uid').put(userController.updateUsername);
+app.route('/password/:uid').put(userController.updateUserpw);
+
 /* app.route('/login').post(passport.authenticate('local', {
     successRedirect: '/pages/vault.html',
     failureRedirect: '/pages/signup.html'

@@ -1,4 +1,4 @@
-"use strict"
+/* "use strict"
 
 class users{
     constructor(uid, email, username, password){
@@ -20,4 +20,4 @@ class users{
         return this.password;
     }
 }
-    module.exports = users;
+    module.exports = users; */

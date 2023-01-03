@@ -2,8 +2,9 @@
 
 const UserDB = require('../models/UserDB');
 const bcrypt = require('bcrypt');
-
+var jwt = require('jsonwebtoken')
 var userDB = new UserDB();
+var secret = "seniorsproject"
 
 function getAllUser(request, respond) {
     userDB.getAllUser(function (error, result) {
@@ -34,21 +35,7 @@ function addUser(request, respond) {
     })
 }
 
-function updateUser(request, respond) {
 
-    var email = request.body.username;
-    var username = request.body.username;
-    var password = request.body.password
-
-    userDB.updateUser(email, username, password, function (error, result) {
-        if (error) {
-            respond.json(error);
-        }
-        else {
-            respond.json(result);
-        }
-    });
-}
 
 function deleteUser(request, respond) {
     var uid = request.params.uid;
@@ -75,7 +62,15 @@ function loginUser(request, respond) {
             //give back password only
             console.log(result[0].password)
             //compare passwords validity here
-            respond.json(result);
+            const hash = result[0].password;
+            var flag = bcrypt.compareSync(password, hash);
+            if (flag) {
+                var token = jwt.sign(username, secret)
+                respond.json({ result: token });
+            }
+            else {
+                respond.json({ result: "invalid" });
+            }
         }
     })
 }
@@ -112,5 +107,72 @@ function loginUser(request, respond) {
 
 } */
 
+// Update Functions
 
-module.exports = { getAllUser, updateUser, addUser, deleteUser, loginUser };
+function updateUseremail(request, respond) {
+
+    var email = request.body.email;
+    var token = request.body.token;
+    var uid = request.params.uid;
+
+    try {
+        var decoded = jwt.verify(token, secret);
+        userDB.updateUseremail(email, uid, function (error, result) {
+            if (error) {
+                respond.json(error);
+            }
+            else {
+                respond.json(result);
+            }
+        });
+    } catch (error) {
+        respond.json({ result: "invalid token" });
+    }
+
+}
+
+function updateUsername(request, respond) {
+
+    var username = request.body.username;
+    var token = request.body.token;
+    var uid = request.params.uid;
+
+    try {
+        var decoded = jwt.verify(token, secret);
+        userDB.updateUsername(username, uid, function (error, result) {
+            if (error) {
+                respond.json(error);
+            }
+            else {
+                respond.json(result);
+            }
+        });
+    } catch (error) {
+        respond.json({ result: "invalid" });
+    }
+
+}
+
+function updateUserpw(request, respond) {
+
+    var password = request.body.password;
+    var token = request.body.token;
+    var uid = request.params.uid;
+    password = bcrypt.hashSync(password, 10)
+
+    try {
+        var decoded = jwt.verify(token, secret);
+        userDB.updateUserpw(password, uid, function (error, result) {
+            if (error) {
+                respond.json(error);
+            }
+            else {
+                respond.json(result);
+            }
+        });
+    } catch (error) {
+        respond.json({ result: "invalid" });
+    }
+
+}
+module.exports = { getAllUser, addUser, deleteUser, loginUser, updateUseremail, updateUsername, updateUserpw };
