@@ -5,6 +5,19 @@ const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken')
 var userDB = new UserDB();
 var secret = "seniorsproject"
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+
+passport.use(new LocalStrategy(function verify(username, password, callback) {
+    // check provided username and password against values stored in the database
+    if (username === 'admin' && password === 'admin') {
+      // credentials are valid - return user object
+      return callback(null, { username: 'admin' });
+    } else {
+      // credentials are invalid - return error object
+      return callback(null, false, { message: 'Incorrect username or password' });
+    }
+  }));
 
 function getAllUser(request, respond) {
     userDB.getAllUser(function (error, result) {

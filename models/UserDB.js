@@ -1,6 +1,5 @@
 "use strict";
 
-const { request } = require('express');
 var db = require('../db-connection');
 
 class userDB{
@@ -34,9 +33,9 @@ class userDB{
         return db.query(sql, [uid], callback);
     }
 
-    loginUser(username, password, callback){
-        var sql = "SELECT password from seniors_project.users WHERE username = ?";
-        return db.query(sql, [username, password], callback);
+    loginUser(password, username, callback){
+        var sql = "SELECT password, uid from seniors_project.users WHERE username = ?";
+        return db.query(sql, [password, username], callback);
     }
 
     /* pploginUser(username, password, callback){
