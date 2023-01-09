@@ -10,8 +10,6 @@ const bodyParser = require("body-parser");
 const userController = require('./controllers/userController')
 
 var app = express();
-var host = "127.0.0.1";
-var port = 8080;
 var cors = require('cors');
 
 //To serve static files such as images, CSS files, and JavaScript files, use the express.static built-in middleware function in Express.
@@ -43,3 +41,6 @@ app.route('/login').post(userController.loginUser);
 app.route('/useremail/:uid').put(userController.updateUseremail);
 app.route('/username/:uid').put(userController.updateUsername);
 app.route('/password/:uid').put(userController.updateUserpw);
+
+//Route for services
+app.route('/')
