@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 
 
 const userController = require('./controllers/userController')
+const serviceController = require('./controllers/serviceController')
 
 var app = express();
 var cors = require('cors');
@@ -43,4 +44,5 @@ app.route('/username/:uid').put(userController.updateUsername);
 app.route('/password/:uid').put(userController.updateUserpw);
 
 //Route for services
-app.route('/')
+app.route('/vaultga').get(serviceController.getAllVault);
+app.route('/vaultac').post(serviceController.addAcc);
