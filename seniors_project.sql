@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2023 at 05:31 PM
+-- Generation Time: Jan 10, 2023 at 04:47 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -39,15 +39,25 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`uid`, `email`, `username`, `password`) VALUES
-(1, 'test@yahoo.com', 'test1', 'pwtest1'),
-(2, 'postman@gmail.com', 'postman1', 'postmanpw1'),
-(3, 'Testweb@proton.com', 'Testweb1', 'pullywilly'),
-(4, 'asd@sad.com', 'Testweb2', 'yguuy'),
-(5, 'Testweb@prot2on.com', 'Testweb3', '12345'),
-(6, 'TomatoPotat@gotmail.com', 'Testweb45', 'willywec'),
-(7, 'willypeen@tomato.com', 'hellopostman1', 'tomatopotato2'),
-(9, 'Testweb@proto123n.com', 'peepeeteehee', '123'),
-(10, 'tomatowilly@wink.com', 'Signuptest1', 'itot');
+(1, 'Testupdate12@gmail.com', 'Testupdateuser2', '$2b$10$TypSVhla4jpwnzqC/P.FoOX.FtaerRNN4o3m/LBYFJ6kE6Whz3wYa'),
+(12, 'Marcusiscool213@tot.com', 'marcusis123', '$2b$10$hnMuKyINEbNEiB6KLjRTwu9vwvI6PHbpb5pRZcjQv6XDiPDaSn8ru'),
+(13, 'ngjunyew@yahoo.com', 'marcus2', '$2b$10$kXfYgFp8NAW58hNYCw4LO.tSDC9NT1lA.2JwIGqHEZgtV5b29f0Ru'),
+(14, 'fella1@hotmail.com', 'Fella1', '$2b$10$TKi0O5XqcI0ukOJ923GKdOASoNxV3S.hPUvt2oWbdCM1sghD0T2RC'),
+(15, 'quadrolift@gmail.com', 'marcus4', '$2b$10$Zy3nWYy7g3okfNb7vuxfSu5AxkymWRZgEUebgiYNgSuKi.Rt0sKKW');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vault`
+--
+
+CREATE TABLE `vault` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `service` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -62,6 +72,13 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `username_index` (`username`);
 
 --
+-- Indexes for table `vault`
+--
+ALTER TABLE `vault`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -69,7 +86,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `uid` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `vault`
+--
+ALTER TABLE `vault`
+  ADD CONSTRAINT `vault_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`uid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
