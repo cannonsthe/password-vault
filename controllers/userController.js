@@ -121,8 +121,6 @@ function deleteUser(request, respond) {
     });
 }
 
-
-
 /* function loginUser1(request, respond) {
     // var email = request.body.email;
     var username = request.body.username;
