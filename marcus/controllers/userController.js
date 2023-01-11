@@ -1,6 +1,6 @@
 "use strict";
 
-const UserDB = require('../models/UserDB');
+const UserDB = require('../marcus/models/UserDB');
 const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken')
 var userDB = new UserDB();

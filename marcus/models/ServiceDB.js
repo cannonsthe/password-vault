@@ -1,6 +1,6 @@
 "use strict";
 
-var db = require('../db-connection');
+var db = require('../../db-connection');
 
 class serviceDB{
     getAllVault(callback){

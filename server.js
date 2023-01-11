@@ -1,14 +1,7 @@
 "use strict";
 
 const express = require("express");
-/* const passport = require("passport");
-const LocalStrategy = require("passport-local");
-const crypto = require('crypto'); */
 const bodyParser = require("body-parser");
-
-const userController = require('./controllers/userController')
-const serviceController = require('./controllers/serviceController')
-
 var app = express();
 var cors = require('cors');
 
@@ -34,7 +27,9 @@ const start = async () => {
 
 start();
 
-//Marucs routes
+//Marcus routes
+const userController = require('./marcus/controllers/userController')
+const serviceController = require('./marcus/controllers/serviceController')
 //Route for Users
 app.route('/users').get(userController.getAllUser);
 app.route('/register').post(userController.addUser);
@@ -51,5 +46,25 @@ app.route('/vaultac').post(serviceController.addAcc);
 
 
 
-
+//Kieron routes
+const { ROLE, users } = require('./kieron/data')
+const { authUser, authRole } = require('./kieron/basicAuth')
+const projectRouter = require('./kieron/routes/projects')
+app.use('/projects', projectRouter)
+app.get('/', (req, res) => {
+  res.send('Home Page')
+})
+app.get('/dashboard', authUser, (req, res) => {
+  res.send('Dashboard Page')
+})
+app.get('/admin', authUser, authRole(ROLE.ADMIN), (req, res) => {
+  res.send('Admin Page')
+})
+function setUser(req, res, next) {
+  const userId = req.body.userId
+  if (userId) {
+    req.user = users.find(user => user.id === userId)
+  }
+  next()
+}
 //
