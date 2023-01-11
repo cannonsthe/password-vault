@@ -26,6 +26,7 @@ function addAcc(request, respond) {
     var service = request.body.service;
     var username = request.body.username;
     var password = request.body.password;
+    var tom;
 
     serviceDB.addAcc(user_id, service, username, password, function (error, result) {
         if (error) {
