@@ -5,6 +5,9 @@ const express = require("express");
 const LocalStrategy = require("passport-local");
 const crypto = require('crypto'); */
 const bodyParser = require("body-parser");
+const { ROLE, users } = require('./data')
+const { authUser, authRole } = require('./basicAuth')
+const projectRouter = require('./routes/projects')
 
 
 const userController = require('./controllers/userController')
@@ -16,7 +19,7 @@ var cors = require('cors');
 //To serve static files such as images, CSS files, and JavaScript files, use the express.static built-in middleware function in Express.
 app.use(express.static("./"));
 app.use(cors());
-
+app.use(express.json())
 //To get inputs sent in the body of the request, we need to use the body-parse
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
