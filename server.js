@@ -5,10 +5,6 @@ const express = require("express");
 const LocalStrategy = require("passport-local");
 const crypto = require('crypto'); */
 const bodyParser = require("body-parser");
-const { ROLE, users } = require('./data')
-const { authUser, authRole } = require('./basicAuth')
-const projectRouter = require('./routes/projects')
-
 
 const userController = require('./controllers/userController')
 const serviceController = require('./controllers/serviceController')
@@ -37,6 +33,8 @@ const start = async () => {
 };
 
 start();
+
+//Marucs routes
 //Route for Users
 app.route('/users').get(userController.getAllUser);
 app.route('/register').post(userController.addUser);
@@ -49,3 +47,9 @@ app.route('/password/:uid').put(userController.updateUserpw);
 //Route for services
 app.route('/vaultga').get(serviceController.getAllVault);
 app.route('/vaultac').post(serviceController.addAcc);
+//
+
+
+
+
+//
