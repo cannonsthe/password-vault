@@ -1,0 +1,40 @@
+<link rel="stylesheet" type="text/css" href="/path/to/stylesheet.css">
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Malicious URL Checker</title>
+</head>
+<body>
+	<h1>Malicious URL Checker</h1>
+	<label for="urlInput">Enter a URL to check for potential malicious content:
+	</label>
+	<form id="urlForm">
+		<input type="text" id="urlInput">
+		<button type="submit" id="checkBtn">Check URL</button>
+	</form>
+	<div id="resultContainer"></div>
+	<script>
+		const form = document.getElementById("urlForm");
+		const resultContainer = document.getElementById("resultContainer");
+		form.addEventListener("submit", e => {
+			e.preventDefault();
+			const url = document.getElementById("urlInput").value;
+			resultContainer.innerHTML = "Checking URL...";
+			fetch(`https://www.malware-url-checker.com/api?url=${url}`)
+				.then(res => res.json())
+				.then(data => {
+					if (data.malicious) {
+						resultContainer.innerHTML = "This URL may contain malicious content. Do not visit.";
+					} else {
+						resultContainer.innerHTML = "This URL appears to be safe.";
+					}
+				})
+				.catch(err => {
+					resultContainer.innerHTML = "There was an error checking the URL. Please try again later.";
+				});
+		});
+	</script>
+</body>
+</html>

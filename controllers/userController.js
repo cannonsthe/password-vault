@@ -109,8 +109,6 @@ function addUser(request, respond) {
     })
 }
 
-
-
 function deleteUser(request, respond) {
     var uid = request.params.uid;
     userDB.deleteUser(uid, function (error, result) {
