@@ -37,12 +37,6 @@ class userDB{
         var sql = "SELECT password, uid from seniors_project.users WHERE username = ?";
         return db.query(sql, [password, uid, username], callback);
     }
-
-    /* pploginUser(username, password, callback){
-        var sql = "SELECT * from seniors_project.users WHERE username = ?";
-        return db.query(sql, [username, password], callback);
-    } */
-
     
 }
 

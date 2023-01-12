@@ -1,6 +1,6 @@
 "use strict";
 
-const ServiceDB = require('../marcus/models/serviceDB');
+const ServiceDB = require('../models/ServiceDB');
 const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken')
 var serviceDB = new ServiceDB();

@@ -65,7 +65,7 @@ async function loginMe() {
       localStorage.setItem("uid", token.uid);
       console.log(token.result);
       console.log(token.uid);
-      window.location.replace('/pages/vaultIndex.html');
+      window.location.replace('/marcus/pages/vaultIndex.html');
     }
     else{ //If user doesnt exist or invalid token
       console.log(token.result);
