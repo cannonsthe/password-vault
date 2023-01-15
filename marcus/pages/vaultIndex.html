@@ -20,10 +20,10 @@
             <div class="row row-cols-3">
 
                 <div class="container d-flex pt-3 ps-4">
-                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-                        aria-labelledby="offcanvasExampleLabel">
+                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu"
+                        aria-labelledby="offcanvasMenuLabel">
                         <div class="offcanvas-header pt-3">
-                            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
+                            <h5 class="offcanvas-title" id="offcanvasMenuLabel">Menu</h5>
                             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                                 aria-label="Close"></button>
                         </div>
@@ -31,8 +31,8 @@
                            
                             <div class="list-group pt-5">
                                 <a class="list-group-item list-group-item-action" href="/marcus/pages/generatePassword.html">Create a new password</a>
-                                <button class="list-group-item list-group-item-action" href="#">Add existing details</button>
-                                <button class="list-group-item list-group-item-action" href="#">Password vault</button>
+                                <a class="list-group-item list-group-item-action" href="/marcus/pages/addPassword.html">Add existing details</a>
+                                <a class="list-group-item list-group-item-action" href="/marcus/pages/passwordVault.html">Password vault</a>
                                 <button class="list-group-item list-group-item-action" onclick="logoutMe();">Log Out</button> 
                                 <button class="list-group-item list-group-item-action" href="#">About the creator</button>
                                 <button class="list-group-item list-group-item-action" href="#">About</button>
@@ -46,8 +46,8 @@
                 </div>
 
                 <div class="container d-flex justify-content-end pt-3">
-                    <button data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
-                        aria-controls="offcanvasExample" class="btn btn-outline-dark me-3 btn-size">
+                    <button data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button"
+                        aria-controls="offcanvasMenu" class="btn btn-outline-dark me-3 btn-size">
                         Menu
                     </button>
                 </div>

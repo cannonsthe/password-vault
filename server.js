@@ -27,22 +27,23 @@ const start = async () => {
 
 start();
 
-//Marcus routes
-const userController = require('./marcus/controllers/userController')
-const serviceController = require('./marcus/controllers/serviceController')
-//Route for Users
-app.route('/users').get(userController.getAllUser);
-app.route('/register').post(userController.addUser);
-app.route('/users/:uid').delete(userController.deleteUser);
-app.route('/login').post(userController.loginUser);
-app.route('/useremail/:uid').put(userController.updateUseremail);
-app.route('/username/:uid').put(userController.updateUsername);
-app.route('/password/:uid').put(userController.updateUserpw);
-
-//Route for services
-app.route('/vaultga').get(serviceController.getAllVault);
-app.route('/vaultac').post(serviceController.addAcc);
-//
+//////////////////////////////////////Marcus routes///////////////////////////////////////
+const userController = require('./marcus/controllers/userController')                   //
+const serviceController = require('./marcus/controllers/serviceController')             //
+//////////////////////////////////////Route for Users/////////////////////////////////////  
+app.route('/users').get(userController.getAllUser);                                     //
+app.route('/register').post(userController.addUser);                                    //
+app.route('/users/:uid').delete(userController.deleteUser);                             //
+app.route('/login').post(userController.loginUser);                                     //
+app.route('/useremail/:uid').put(userController.updateUseremail);                       //
+app.route('/username/:uid').put(userController.updateUsername);                         //
+app.route('/password/:uid').put(userController.updateUserpw);                           //
+/////////////////////////////////////Route for services///////////////////////////////////
+app.route('/vaultga').post(serviceController.getUserVault);   
+app.route('/vaultgui').post(serviceController.getUserIndiv);                             //
+app.route('/vaultac').post(serviceController.addAcc);     
+app.route('/vaultdac/').delete(serviceController.deleteAcc);                                //
+//////////////////////////////////////////////////////////////////////////////////////////
 
 
 

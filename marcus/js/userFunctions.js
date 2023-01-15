@@ -87,3 +87,4 @@ function logoutMe() {
   localStorage.removeItem("currentuser");
   window.location.replace('/pages/vault.html');
 }
+
