@@ -38,6 +38,10 @@ class userDB{
         return db.query(sql, [password, uid, username], callback);
     }
     
+    checkuniqueUser(username, email, callback){
+        var sql = "SELECT username, email from users WHERE (username = ? OR email = ?)"
+        return db.query(sql, [username, email], callback)
+    }
 }
 
 module.exports = userDB;

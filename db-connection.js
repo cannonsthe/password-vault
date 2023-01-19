@@ -1,17 +1,15 @@
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
-    host:'localhost',
-    port: '3306',
-    user:'root',
-    password:'',
-    database: 'seniors_project'
-});
+  host: 'mp-database.ckohq00bj3ax.us-east-1.rds.amazonaws.com',
+  port: '3306',
+  user: 'admin',
+  password: 'seniorsproject',
+  database: 'seniors_project'
+})
 
-//check connection if it is successful
-connection.connect((err) => {
-    if (err) throw err;
-    console.log('Connected to MySQL Server!');
-  });
-  
+connection.connect(error => {
+  if (error) throw error;
+  console.log('Connected to DB')
+})
 module.exports = connection;

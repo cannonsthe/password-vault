@@ -1,18 +1,75 @@
 async function registerMe() {
-  const response = await fetch("http://127.0.0.1:8080/register", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email: document.getElementById("inputEmail").value,
-      username: document.getElementById("inputUsername").value,
-      password: document.getElementById("inputPassword").value,
-    }),
-  });
-  console.log(response);
-}
+  const email = document.getElementById("inputEmail").value;
+  const username = document.getElementById("inputUsername").value;
+  const password = document.getElementById("inputPassword").value;
 
+  //Validation
+  if (!email) {
+    alert("Please enter a email");
+    return;
+  }
+  if (!username) {
+    alert("Please enter a username");
+    return;
+  }
+  if (!password) {
+    alert("Please enter a password");
+    return;
+  }
+  if (username.length < 5) {
+    alert("Username must be at least 5 characters long");
+    return;
+  }
+  if (password.length < 5) {
+    alert("Password must be at least 5 characters long");
+    return;
+  }
+  if (/[^a-zA-Z0-9]/.test(username)) {
+    alert("Username must only contain alphanumeric characters");
+    return;
+  }
+  if (/[^a-zA-Z0-9]/.test(password)) {
+    alert("Password must only contain alphanumeric characters");
+    return;
+  }
+
+  //Fetch
+  try {
+    const response = await fetch("http://127.0.0.1:8080/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        username: username,
+        password: password,
+      }),
+    });
+    if (response.ok) { //If request went through
+      const reply = await response.json();
+      if (reply.status != "unsuccessful"){ //If username and email are unique
+        console.log(reply);
+        alert("Succesful, you can login now")
+        window.location.replace('/marcus/pages/login.html');
+      }
+      else { //If already exist
+        alert("The username or email is already in use")
+        return;
+      }
+    }
+    else { //If error for request
+      alert("There was an error in the request, try again")
+      window.location.replace('/marcus/pages/vault.html');
+    }
+  } 
+  //If theres any errors in the validation earlier?
+  catch (error) {
+    alert("Error in try clause")
+    return;
+    console.log(error);
+  }
+}
 
 async function loginMe() {
   // Get the username and password
@@ -67,7 +124,7 @@ async function loginMe() {
       console.log(token.uid);
       window.location.replace('/marcus/pages/vaultIndex.html');
     }
-    else{ //If user doesnt exist or invalid token
+    else { //If user doesnt exist or invalid token
       console.log(token.result);
     }
 
@@ -85,6 +142,6 @@ async function loginMe() {
 function logoutMe() {
   localStorage.removeItem("token");
   localStorage.removeItem("currentuser");
-  window.location.replace('/pages/vault.html');
+  localStorage.removeItem("uid");
+  window.location.replace('/marcus/pages/vault.html');
 }
-

@@ -8,11 +8,6 @@ var secret = "seniorsproject"
 const { request } = require('express');
 const crypto = require('crypto')
 
-// Define the encryption algorithm
-const algorithm = 'AES-GCM';
-// Define the encryption key length
-const keyLength = 256;
-
 
 
 function getAllVault(request, respond) {
@@ -29,16 +24,22 @@ function getAllVault(request, respond) {
 
 function getUserVault(request, respond) { //Get individual user data
     var user_id = request.body.user_id;
+    var currentuser = request.body.currentuser;
+    var token = request.body.token;
 
-    serviceDB.getUserVault(user_id, function (error, result) {
-        if (error) {
-            respond.json(error);
-        }
-        else {
-            respond.json(result);
-        }
-    })
-
+    if (token == jwt.sign(currentuser, secret)) {
+        serviceDB.getUserVault(user_id, function (error, result) {
+            if (error) {
+                respond.json(error);
+            }
+            else {
+                respond.json(result);
+            }
+        })
+    }
+    else {
+        respond.json({  message: 'invalid token'    });
+    };
 }
 //
 function getUserIndiv(request, respond) { //Get individual user data
@@ -63,42 +64,77 @@ function addAcc(request, respond) {
     var password = request.body.password;
     var image = request.body.image;
     var token = request.body.token;
+    var currentuser = request.body.currentuser; //currentuser
 
-    ////////////////////////////////////////////////////////////////////////
-    // Generate a random 256-bit (32-byte) salt
-    //const salt = crypto.randomBytes(32);
-    // Derive a key using PBKDF2
-    //const key = crypto.pbkdf2Sync(token, salt, 100000, 32, 'sha512');
-    // Create a new initialization vector (IV) for each encryption
-    //const iv = crypto.randomBytes(16);
-    // Create a new cipher using the key and IV
-    //const cipher = crypto.createCipheriv('aes-256-cbc', key, iv);
-    // Encrypt the password
-    //let encrypted = cipher.update(password, 'utf8', 'hex');
-    //encrypted += cipher.final('hex');
-    // Concatenate the salt, IV, and encrypted password and store in the database
-    //password = salt.toString('hex') + iv.toString('hex') + encrypted;
-    ////////////////////////////////////////////////////////////////////////
-    serviceDB.addAcc(user_id, service, username, password, image, function (error, result) {
-        if (error) {
-            respond.json(error);
+    try {
+        if (token == jwt.sign(currentuser, secret)) { //If token is valid
+            serviceDB.addAcc(user_id, service, username, password, image, function (error, result) {
+                if (error) {
+                    respond.json(error);
+                }
+                else {
+                    respond.json(result);
+                }
+            });
         }
         else {
-            respond.json(result);
-        }
-    })
+            respond.json({  message: 'invalid token'    });
+        };
+    } catch (error) {
+        respond.json(error);
+    }
 }
 
 function deleteAcc(request, respond) {
-    var id = request.body.id;
-    serviceDB.deleteAcc(id, function (error, result) {
-        if (error) {
-            respond.json(error);
-        }
-        else {
-            respond.json(result);
-        }
-    })
+    var index = request.body.index;
+    var token = request.body.token;
+    var currentuser = request.body.currentuser; //currentuser
+
+    if (token == jwt.sign(currentuser, secret)) {
+        serviceDB.deleteAcc(index, function (error, result) {
+            if (error) {
+                respond.json(error);
+            }
+            else {
+                respond.json(result);
+            }
+        })
+    }
+    else {
+        respond.json({  message: 'invalid token'    });
+    };
 }
 
-module.exports = { getAllVault, addAcc, getUserVault, getUserIndiv, deleteAcc };
+function updateAcc(request, respond) {
+
+    //Information to be used
+    var sid = request.body.sid;
+    var service = request.body.service;
+    var username = request.body.username;
+    var password = request.body.password;
+    var image = request.body.image;
+
+    //For Token Validation
+    var token = request.body.token;
+    var currentuser = request.body.currentuser; //currentuser
+
+    try {
+        if (token == jwt.sign(currentuser, secret)) { //If token is valid
+            serviceDB.updateAcc(service, username, password, image, sid, function (error, result) {
+                if (error) {
+                    respond.json(error);
+                }
+                else {
+                    respond.json(result);
+                }
+            });
+        }
+        else {
+            respond.json({  message: 'invalid token'    });
+        };
+    } catch (error) {
+        respond.json(error);
+    }
+}
+
+module.exports = { getAllVault, addAcc, getUserVault, getUserIndiv, deleteAcc, updateAcc };
