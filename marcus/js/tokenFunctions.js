@@ -1,4 +1,5 @@
-$(function () { //Execute to check token
+//Check token, only allow them to access protected page if they're logged in
+$(function () {
     var token = localStorage.getItem("token");
     if (token != null) {
         null
@@ -24,5 +25,6 @@ $('#addsForm').on('change', function () {
         $('#custom-input').hide();
     }
 });
+
 
 
