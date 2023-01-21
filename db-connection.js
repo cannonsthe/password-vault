@@ -10,6 +10,6 @@ var connection = mysql.createConnection({
 
 connection.connect(error => {
   if (error) throw error;
-  console.log('Connected to DB')
+  console.log('Connected to AWS RDS DB')
 })
 module.exports = connection;

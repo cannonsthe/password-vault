@@ -41,7 +41,7 @@ async function AddserviceGenerate() { // If user is allowing us to generate a pa
   }
 
 
-  const response = await fetch("http://127.0.0.1:8080/vaultac", {
+  const response = await fetch("http://3.220.228.48:8080/vaultac", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -81,7 +81,7 @@ async function getServiceData() { //Get user vault array based on user id, calls
     headers: { 'Content-Type': 'application/json' }
   };
   try {
-    const response = await fetch(`http://127.0.0.1:8080/vaultga`, options);
+    const response = await fetch(`http://3.220.228.48:8080/vaultga`, options);
     var serviceArray = await response.json();
     console.log(serviceArray);
     displayServiceData(serviceArray); // CALL FUNCTION TO DISPLAY INDIV ROWS OF DATA AFTER FETCHING THE DATA
@@ -166,6 +166,7 @@ async function AddserviceExisting() { //Function to POST for existing password
   let token = localStorage.getItem("token");
   let username = document.getElementById("addsUsername").value;
   let user_id = localStorage.getItem("uid");
+  let currentuser = localStorage.getItem("currentuser")
 
   if (service === "Others") {
     service = document.getElementById("custom-input").value;
@@ -184,8 +185,9 @@ async function AddserviceExisting() { //Function to POST for existing password
     var image = "/marcus/images/instagram.jpg"
   }
 
+  console.log(service, password, token, username, user_id, currentuser);
 
-  const response = await fetch("http://127.0.0.1:8080/vaultac", {
+  const response = await fetch("http://3.220.228.48:8080/vaultac", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -197,6 +199,7 @@ async function AddserviceExisting() { //Function to POST for existing password
       password: password,
       image: image,
       token: token,
+      currentuser: currentuser,
     }),
   });
   console.log(response);
@@ -244,7 +247,7 @@ function displayIndexData() { //Get row data via view button and display on moda
   });
 }
 
-function editIndexData() { //Get row data via view button and display on modal
+function editIndexData() { //Get row data via view button and display on modal and edit
   $(document).on('click', '.view-btn', async function () {
     var servicearray = await getServiceData();
     var index = $(this).val();
@@ -293,7 +296,7 @@ async function deleteIndexData() {
   index = localStorage.getItem("sid");
   let currentuser = localStorage.getItem("currentuser");
   let token = localStorage.getItem("token");
-  const response = await fetch('http://localhost:8080/vaultdac', {
+  const response = await fetch('http://3.220.228.48:8080/vaultdac', {
     method: 'DELETE',
     body: JSON.stringify({ index, currentuser, token }),
     headers: { 'Content-Type': 'application/json' }
@@ -314,7 +317,7 @@ async function saveIndexData() { //Update modal
   let image = filterImagePost(service);
   console.log(image)
 
-  const response = await fetch("http://127.0.0.1:8080/vaultupac", {
+  const response = await fetch("http://3.220.228.48:8080/vaultupac", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

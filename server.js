@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 const start = async () => {
   try {
     await app.listen(8080);
-    console.log('Server listening on http://127.0.0.1:8080');
+    console.log('Server listening on http://3.220.228.48:8080');
   } catch (err) {
     console.error(err);
     process.exit(1);
