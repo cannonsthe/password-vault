@@ -143,5 +143,6 @@ function logoutMe() {
   localStorage.removeItem("token");
   localStorage.removeItem("currentuser");
   localStorage.removeItem("uid");
+  localStorage.removeItem("sid");
   window.location.replace('/marcus/pages/vault.html');
 }
