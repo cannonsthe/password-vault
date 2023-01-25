@@ -1,6 +1,7 @@
 <!-- Protected Page -->
 <!DOCTYPE html>
 <html lang="en">
+<!-- 394 -->
 
 <head>
     <meta charset="UTF-8">
@@ -15,96 +16,82 @@
 </head>
 
 <body class="header">
-    <div>
-        <div class="container-fluid">
-            <div class="row row-cols-3">
-                <div class="container d-flex pt-3 ps-4">
-                    <!--  -->
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="sidebar">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="list-group-item list-group-item-action" href="/marcus/pages/generatePassword.html">Create a new password</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="list-group-item list-group-item-action" href="/marcus/pages/addPassword.html">Add existing details</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="list-group-item list-group-item-action" href="/marcus/pages/passwordVault.html">Password vault</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <button class="list-group-item list-group-item-action" onclick="logoutMe();">Log Out</button> 
-                                        </li>
-                                        <li class="nav-item">
-                                            <button class="list-group-item list-group-item-action" href="#">About</button>
-                                        </li>
+    <div class="row mw-100 mh-100"> <!-- Split Page into 3 columns -->
+        <div class="col d-flex justify-content-start">
+            <nav class="navbar navbar-expand d-flex flex-column align-items-start" id="sidebar">
+                <a href="#" class="navbar-brand text-light mt-5 w-100 ms-4">
+                    <div class="display-5 font-weight-bold">Menu</div>
+                </a>
+                <ul class="navbar-nav d-flex flex-column mt-5 w-100">
+                    <li class="nav-item w-100 ms-4 mt-5 text-light">
+                        <a class="list-group-item list-group-item-action"
+                            href="/marcus/pages/generatePassword.html">Create a new password</a>
+                    </li>
+                    <li class="nav-item w-100 ms-4 mt-3 text-light">
+                        <a class="list-group-item list-group-item-action" href="/marcus/pages/addPassword.html">Add
+                            existing details</a>
+                    </li>
+                    <li class="nav-item w-100 ms-4 mt-3 text-light">
+                        <a class="list-group-item list-group-item-action"
+                            href="/marcus/pages/passwordVault.html">Password vault</a>
+                    </li>
+                    <li class="nav-item w-100 ms-4 mt-3 text-light">
+                        <button class="list-group-item list-group-item-action" onclick="logoutMe();">Log Out</button>
+                    </li>
+                    <li class="nav-item w-100 ms-4 mt-3 text-light">
+                        <button class="list-group-item list-group-item-action" href="#">About the creator</button>
+                    </li>
+                </ul>
+            </nav>
 
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-10">
-                                <!-- Main Content -->
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu"
-                        aria-labelledby="offcanvasMenuLabel">
-                        <div class="offcanvas-header pt-3">
-                            <h5 class="offcanvas-title" id="offcanvasMenuLabel">Menu</h5>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="offcanvas-body">
-                           
-                            <div class="list-group pt-5">
-                                <a class="list-group-item list-group-item-action" href="/marcus/pages/generatePassword.html">Create a new password</a>
-                                <a class="list-group-item list-group-item-action" href="/marcus/pages/addPassword.html">Add existing details</a>
-                                <a class="list-group-item list-group-item-action" href="/marcus/pages/passwordVault.html">Password vault</a>
-                                <button class="list-group-item list-group-item-action" onclick="logoutMe();">Log Out</button> 
-                                <button class="list-group-item list-group-item-action" href="#">About the creator</button>
-                                
-                            </div>
-                        </div>
-                    </div> -->
-                </div>
-
-                <div class="container d-flex justify-content-center">
+        </div>
+        <div class="col">
+            <div class="container">
+                <div class="container d-flex justify-content-center" style="height: 100px;">
                     <p class="display-3">Vault</p>
                 </div>
-
-                <div class="container d-flex justify-content-end pt-3">
-                    <button data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button"
-                        aria-controls="offcanvasMenu" class="btn btn-outline-dark me-3 btn-size">
-                        Menu
-                    </button>
-                </div>
-
-            </div>
-        </div>
-
-        <div class=" d-flex justify-content-center" style="height:700px;">
-            <div class="card t-transparent my-auto" style="width: 500px;">
-                <div class="card-header">
-                    <div class="d-flex justify-content-center">
-                        <div class="col-3 text-center">
-                            <h1 class="display-6">
-                                About
-                            </h1>
+                <div class="container-fluid d-flex justify-content-center mt-5">
+                    <div class="card t-transparent my-auto" style="width: 500px;">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-center">
+                                <div class="col-3 text-center">
+                                    <h1 class="display-6">
+                                        About
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero blanditiis ducimus,
+                            vitae
+                            voluptatum et necessitatibus. Et dolores, nulla obcaecati quas soluta excepturi eaque
+                            repellendus,
+                            sequi facere neque ad nam, aspernatur maiores corporis itaque impedit expedita beatae.
+                            Ducimus,
+                            nihil placeat sequi animi officia assumenda nulla, praesentium quaerat repudiandae
+                            tempora
+                            accusantium molestias.
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero blanditiis ducimus, vitae
-                    voluptatum et necessitatibus. Et dolores, nulla obcaecati quas soluta excepturi eaque repellendus,
-                    sequi facere neque ad nam, aspernatur maiores corporis itaque impedit expedita beatae. Ducimus,
-                    nihil placeat sequi animi officia assumenda nulla, praesentium quaerat repudiandae tempora
-                    accusantium molestias.
-                </div>
             </div>
+        </div>
+        <div class="col">
+            <div class="container">
+
+                <!--  -->
+                <div class="container d-flex justify-content-center">
+                </div>
 
 
+                <div class="container d-flex justify-content-end pt-3">
+                    <!-- <button data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button" aria-controls="offcanvasMenu"
+                        class="btn btn-outline-dark me-3 btn-size">
+                        Menu
+                    </button> -->
+                </div>
+
+            </div>
         </div>
     </div>
 

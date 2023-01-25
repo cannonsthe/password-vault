@@ -116,11 +116,11 @@ async function displayServiceData(serviceArray) { //Display Indiv rows of accs
        ` + username + `
        </td > \
        <td class="btn-space"> \
-       <button type="button" class="btn btn-outline-secondary btn-sm view-btn" value=`+ index + ` onclick=displayIndexData(); data-bs-toggle="modal"
+       <button type="button" class="btn btn-outline-dark btn-sm view-btn" value=`+ index + ` onclick=displayIndexData(); data-bs-toggle="modal"
        data-bs-target="#viewvaultModal">View</button> \
        </td> \
        <td class="btn-space">
-       <button type="button" class="btn btn-outline-secondary btn-sm view-btn" value=`+ index + ` onclick=editIndexData(); data-bs-toggle="modal"
+       <button type="button" class="btn btn-outline-dark btn-sm view-btn" value=`+ index + ` onclick=editIndexData(); data-bs-toggle="modal"
        data-bs-target="#editvaultModal">edit</button> \
        </td> \
      </tr> `;
