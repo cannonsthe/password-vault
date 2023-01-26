@@ -170,7 +170,7 @@ async function AddserviceExisting() { //Function to POST for existing password
 
   if (service === "Others") {
     service = document.getElementById("custom-input").value;
-    //Theres already a default value if null in SQL DB
+    var image = "/marcus/images/v-logo.PNG";
   }
   else if (service === "Twitter") {
     var image = "/marcus/images/twitter.jpg"
