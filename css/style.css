@@ -111,3 +111,7 @@ body {
 .col {
     height: 100vh;
 }
+
+.row-height {
+    height: 360px;
+}
