@@ -74,12 +74,13 @@ body {
 .t-box {
     border-radius: 10px;
     padding: 10px;
+    height: 250px;
     
 }
 
 .t-responsive {
 
-    max-height: 300px;
+    max-height: 250px;
     overflow-y: scroll;
 }
 
