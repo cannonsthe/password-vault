@@ -15,7 +15,7 @@ function generatePassword(length) { //Secure random password generator
 
 async function AddserviceGenerate() { // If user is allowing us to generate a password for them
   let service = document.getElementById("serviceForm").value;
-  let password = generatePassword(12);
+  let password = generatePassword(10);
   let token = localStorage.getItem("token");
   let currentuser = localStorage.getItem("currentuser")
 
@@ -167,6 +167,11 @@ async function AddserviceExisting() { //Function to POST for existing password
   let username = document.getElementById("addsUsername").value;
   let user_id = localStorage.getItem("uid");
   let currentuser = localStorage.getItem("currentuser")
+
+  if (Boolean(password) == true){
+    password = generatePassword(10)
+    console.log("empty pw")
+  }
 
   if (service === "Others") {
     service = document.getElementById("custom-input").value;
