@@ -168,7 +168,7 @@ async function AddserviceExisting() { //Function to POST for existing password
   let user_id = localStorage.getItem("uid");
   let currentuser = localStorage.getItem("currentuser")
 
-  if (Boolean(password) == true){
+  if (!password){
     password = generatePassword(10)
     console.log("empty pw")
   }
