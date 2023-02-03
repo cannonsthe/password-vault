@@ -8,6 +8,11 @@ class userDB{
         db.query(sql, callback);
     }
 
+    getUser(uid, callback){
+        var sql = "SELECT * from seniors_project.users WHERE uid = ?";
+        db.query(sql, [uid],callback);
+    }
+
     addUser(email, username, password, callback){
         var sql = "INSERT INTO users (email, username, password) VALUES (?, ?, ?)";
         db.query(sql, [email, username, password], callback);
@@ -42,6 +47,8 @@ class userDB{
         var sql = "SELECT username, email from users WHERE (username = ? OR email = ?)"
         return db.query(sql, [username, email], callback)
     }
+
+
 }
 
 module.exports = userDB;

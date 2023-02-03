@@ -5,21 +5,8 @@ const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken')
 var userDB = new UserDB();
 var secret = "seniorsproject"
-const passport = require("passport");
-const LocalStrategy = require("passport-local");
 const { request } = require('express');
 const { get } = require('jquery');
-
-passport.use(new LocalStrategy(function verify(username, password, callback) {
-    // check provided username and password against values stored in the database
-    if (username === request.body.username && password === request.body.password) {
-        // credentials are valid - return user object
-        return callback(null, { username: request.body.username });
-    } else {
-        // credentials are invalid - return error object
-        return callback(null, false, { message: 'Incorrect username or password' });
-    }
-}));
 
 function loginUser(request, respond) {
     // Get the username and password
@@ -93,6 +80,26 @@ function getAllUser(request, respond) { //no need for this
 
 }
 
+function getuserData(request, respond) {
+    var uid = request.body.uid;
+    var currentuser = request.body.currentuser;
+    var token = request.body.token;
+
+    if (token == jwt.sign(currentuser, secret)) {
+        userDB.getUser(uid, function (error, result) {
+            if (error) {
+                respond.json(error);
+            }
+            else {
+                respond.json(result);
+            }
+        })
+    }
+    else {
+        respond.json({ message: 'invalid token' });
+    };
+}
+
 function addUser(request, respond) {
 
     var email = request.body.email;
@@ -108,7 +115,7 @@ function addUser(request, respond) {
             else {
                 if (result.length > 0) { // Checks if there is a user from the username or email
                     try { //If user exist
-                        respond.json({ result: "Username or Email is already in use", status: "unsuccessful" });                    
+                        respond.json({ result: "Username or Email is already in use", status: "unsuccessful" });
                     } catch (error) { //If user doesnt exist too
                         console.log(error)
                     }
@@ -130,20 +137,26 @@ function addUser(request, respond) {
     }
 }
 
-function deleteUser(request, respond) {
-    var uid = request.params.uid;
-    userDB.deleteUser(uid, function (error, result) {
-        if (error) {
-            respond.json(error);
-        }
-        else {
-            respond.json(result);
-        }
-    });
-}
-
 // Update Functions
+function deleteUser(request, respond) {
+    var index = request.body.index;
+    var token = request.body.token;
+    var currentuser = request.body.currentuser; //currentuser
 
+    if (token == jwt.sign(currentuser, secret)) {
+        userDB.deleteUser(index, function (error, result) {
+            if (error) {
+                respond.json(error);
+            }
+            else {
+                respond.json(result);
+            }
+        })
+    }
+    else {
+        respond.json({ message: 'invalid token' });
+    };
+}
 
 function updateUserpw(request, respond) {
 
@@ -167,4 +180,4 @@ function updateUserpw(request, respond) {
     }
 
 }
-module.exports = { getAllUser, addUser, deleteUser, loginUser, updateUserpw };
+module.exports = { getAllUser, addUser, deleteUser, loginUser, updateUserpw, getuserData, deleteUser };

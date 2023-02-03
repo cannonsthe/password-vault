@@ -48,7 +48,7 @@ async function registerMe() {
     });
     if (response.ok) { //If request went through
       const reply = await response.json();
-      if (reply.status != "unsuccessful"){ //If username and email are unique
+      if (reply.status != "unsuccessful") { //If username and email are unique
         console.log(reply);
         alert("Succesful, you can login now")
         window.location.replace('/marcus/pages/login.html');
@@ -62,7 +62,7 @@ async function registerMe() {
       alert("There was an error in the request, try again")
       window.location.replace('/marcus/pages/vault.html');
     }
-  } 
+  }
   //If theres any errors in the validation earlier?
   catch (error) {
     alert("Error in try clause")
@@ -145,4 +145,20 @@ function logoutMe() {
   localStorage.removeItem("uid");
   localStorage.removeItem("sid");
   window.location.replace('/marcus/pages/vault.html');
+}
+
+async function getUserData() {
+  let uid = localStorage.getItem("uid");
+  let currentuser = localStorage.getItem("currentuser");
+  let token = localStorage.getItem("token");
+  try {
+    const response = await fetch('http://3.220.228.48:8080/viewuser', {
+      method: 'POST',
+      body: JSON.stringify({ uid, currentuser, token }),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+  }
 }

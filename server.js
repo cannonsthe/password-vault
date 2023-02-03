@@ -35,15 +35,16 @@ const serviceController = require('./marcus/controllers/serviceController')     
 //////////////////////////////////////Route for Users/////////////////////////////////////  
 app.route('/users').get(userController.getAllUser);                                     //
 app.route('/register').post(userController.addUser);                                    //
-app.route('/users/:uid').delete(userController.deleteUser);                             //
-app.route('/login').post(userController.loginUser);                                     //          
-app.route('/password/:uid').put(userController.updateUserpw);                           //
+app.route('/users/:uid').delete(userController.deleteUser);//                           //
+app.route('/login').post(userController.loginUser);                                     //
+app.route('/viewuser').post(userController.getuserData);//                              //      
+app.route('/password/:uid').put(userController.updateUserpw);//                         //
 /////////////////////////////////////Route for services///////////////////////////////////
 app.route('/vaultga').post(serviceController.getUserVault);                             // 
 app.route('/vaultgui').post(serviceController.getUserIndiv);                            //
 app.route('/vaultac').post(serviceController.addAcc);                                   //
 app.route('/vaultdac/').delete(serviceController.deleteAcc);                            //
-app.route('/vaultupac/').put(serviceController.updateAcc);                            //
+app.route('/vaultupac/').put(serviceController.updateAcc);                              //
 //////////////////////////////////////////////////////////////////////////////////////////
 
 

@@ -1,0 +1,137 @@
+<!-- Protected Page -->
+<!DOCTYPE html>
+<html lang="en">
+<!-- 394 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Random password generator</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body class="header">
+    <div class="row mw-100 mh-100"> <!-- Split Page into 3 columns -->
+        <div class="col d-flex justify-content-start">
+            <nav class="navbar navbar-expand d-flex flex-column align-items-start" id="sidebar">
+                <a href="vaultIndex.html" class="navbar-brand text-light mt-5 w-100 ms-4">
+                    <div class="display-5 font-weight-bold">Menu</div>
+                </a>
+                <ul class="navbar-nav d-flex flex-column mt-5 w-100">
+                    <li class="nav-item w-100 ms-4 mt-5 text-light">
+                        <a class="list-group-item list-group-item-action font-size"
+                            href="/marcus/pages/generatePassword.html">Create a new password</a>
+                    </li>
+                    <li class="nav-item w-100 ms-4 mt-3 text-light ">
+                        <a class="list-group-item list-group-item-action font-size"
+                            href="/marcus/pages/addPassword.html">
+                            Add existing details</a>
+                    </li>
+                    <li class="nav-item w-100 ms-4 mt-3 text-light">
+                        <a class="list-group-item list-group-item-action font-size"
+                            href="/marcus/pages/passwordVault.html">Password vault</a>
+                    </li>
+                    <li class="nav-item w-100 ms-4 mt-3 text-light">
+                        <button class="list-group-item list-group-item-action font-size" onclick="logoutMe();">Log
+                            Out</button>
+                    </li>
+                    <li class="nav-item w-100 ms-4 mt-3 text-light">
+                        <button class="list-group-item list-group-item-action font-size" href="#">About the
+                            creator</button>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+        <div class="col">
+            <div class="row row-height">
+                <div class="container d-flex justify-content-center" style="height: 100px;">
+                    <p class="display-3">
+                        <strong>Vault</strong>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container-fluid d-flex justify-content-center">
+                    <div class="card t-transparent" style="width: 550px; height: 350px;">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-center">
+                                <div class="text-center">
+                                    <h1 class="display-6">
+                                        About: How to use
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body font-size overflow-auto"><strong>
+                            <p>This is a tool to help you manage all your passwords while only remembering one.</p>
+                            In order to add an account of your choice, you have two paths:
+                            <ol>
+                                <li>Add an account and allow us to generate a password for you</li>
+                                <ul>
+                                    <li>Select 'Create a new password' on the left menu</li>
+                                    <li>Select a service you wish to add, enter your username and hit next.</li>
+                                </ul>
+
+                                <li>Add an account where you already have a password created</li>
+                                <ul>
+                                    <li>Select 'Add existing details' on the left menu</li>
+                                    <li>Select a service you wish to add, enter your username and hit next.</li>
+                                    <li>Confirm your details and add your already created password.</li>
+                                    <li>If at this point you wish to allow us to create your password, leave the password field blank.</li>
+                                    <li>Hit 'Add'</li>
+                                </ul>
+                                
+                            </ol>
+                            To view or edit the accounts you have added, select 'Password vault' on the left menu.
+                            <ol>
+                                <li>If you wish to view or delete your account details, click view and do as you wish.</li>
+                                <li>If you wish to edit your details, press the edit button on the account you wish to edit for, edit your details as desired, and press save.</li>
+                            </ol>
+                            <u>Remember to log out when you’re done! You can do so by pressing the button on the left menu.</u>
+                            </strong>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row"></div>
+        </div>
+        <div class="col">
+            <div class="container">
+
+                <!--  -->
+                <div class="container d-flex justify-content-center">
+                </div>
+                <div class="container d-flex justify-content-end pt-3">
+                    <!-- <button data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button" aria-controls="offcanvasMenu"
+                        class="btn btn-outline-dark me-3 btn-size">
+                        Menu
+                    </button> -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/marcus/js/tokenFunctions.js"></script>
+    <script src="/marcus/js/userFunctions.js"></script>
+    <script src="/js/bs/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script> -->
+
+</body>
+
+</html>
