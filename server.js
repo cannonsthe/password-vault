@@ -35,7 +35,7 @@ const serviceController = require('./marcus/controllers/serviceController')     
 //////////////////////////////////////Route for Users/////////////////////////////////////  
 app.route('/users').get(userController.getAllUser);                                     //
 app.route('/register').post(userController.addUser);                                    //
-app.route('/users/:uid').delete(userController.deleteUser);//                           //
+app.route('/delusers').delete(userController.deleteUser);//                           //
 app.route('/login').post(userController.loginUser);                                     //
 app.route('/viewuser').post(userController.getuserData);//                              //      
 app.route('/password/:uid').put(userController.updateUserpw);//                         //

@@ -158,7 +158,37 @@ async function getUserData() {
       headers: { 'Content-Type': 'application/json' }
     });
     const data = await response.json();
-    console.log(data);
+    console.log(data[0]);
+    var username = data[0].username;
+    var email = data[0].email;
+    var pfpath = data[0].pfpath;
+    var card = document.getElementById("userinfocard")
+    card.innerHTML = "";
+
+    var cell =
+      `<div class="d-grid justify-content-center align-items-center">
+    <input class="form-control t-transparent mt-3 input-width" type="text" placeholder="Username" value=`+ username + ` aria-label="Disabled input example" disabled>
+    <input class="form-control t-transparent mt-3 input-width" type="text" placeholder="Email" value=`+ email + ` aria-label="Disabled input example" disabled>
+    <input class="form-control t-transparent mt-3 input-width" type="text" placeholder="Password" value="" aria-label="Disabled input example" disabled>
+    </div>`
+
+    card.insertAdjacentHTML('beforeend', cell);
+
   } catch (error) {
   }
+}
+
+async function deleteUser() {
+  uid = localStorage.getItem("uid");
+  let currentuser = localStorage.getItem("currentuser");
+  let token = localStorage.getItem("token");
+  const response = await fetch('http://3.220.228.48:8080/delusers', {
+    method: 'DELETE',
+    body: JSON.stringify({ uid, currentuser, token }),
+    headers: { 'Content-Type': 'application/json' }
+  });
+  const data = await response.json();
+  console.log(data);
+  alert("Delete Successful")
+  window.location.href = "/marcus/pages/signup.html";
 }

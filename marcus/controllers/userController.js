@@ -139,12 +139,12 @@ function addUser(request, respond) {
 
 // Update Functions
 function deleteUser(request, respond) {
-    var index = request.body.index;
+    var uid = request.body.uid;
     var token = request.body.token;
     var currentuser = request.body.currentuser; //currentuser
 
     if (token == jwt.sign(currentuser, secret)) {
-        userDB.deleteUser(index, function (error, result) {
+        userDB.deleteUser(uid, function (error, result) {
             if (error) {
                 respond.json(error);
             }

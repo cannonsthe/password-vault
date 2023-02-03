@@ -1,7 +1,6 @@
 <!-- Protected Page -->
 <!DOCTYPE html>
 <html lang="en">
-<!-- 394 -->
 
 <head>
     <meta charset="UTF-8">
@@ -15,7 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body class="header">
+<body class="header" onload="getUserData();">
     <div class="row mw-100 mh-100"> <!-- Split Page into 3 columns -->
         <div class="col d-flex justify-content-start">
             <nav class="navbar navbar-expand d-flex flex-column align-items-start" id="sidebar">
@@ -35,6 +34,10 @@
                     <li class="nav-item w-100 ms-4 mt-3 text-light">
                         <a class="list-group-item list-group-item-action font-size"
                             href="/marcus/pages/passwordVault.html">Password vault</a>
+                    </li>
+                    <li class="nav-item w-100 ms-4 mt-3 text-light">
+                        <a class="list-group-item list-group-item-action font-size"
+                            href="/marcus/pages/userInfo.html">Account settings</a>
                     </li>
                     <li class="nav-item w-100 ms-4 mt-3 text-light">
                         <button class="list-group-item list-group-item-action font-size" onclick="logoutMe();">Log
@@ -59,42 +62,31 @@
             <div class="row">
                 <div class="container-fluid d-flex justify-content-center">
                     <div class="card t-transparent" style="width: 550px; height: 350px;">
-                        <div class="card-header">
+                        <div class="card-header ">
                             <div class="d-flex justify-content-center">
                                 <div class="text-center">
                                     <h1 class="display-6">
-                                        About: How to use
+                                        <img src="../images/usericon.svg" alt="" style="width: 50px;">
                                     </h1>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body font-size overflow-auto"><strong>
-                            <p>This is a tool to help you manage all your passwords while only remembering one.</p>
-                            In order to add an account of your choice, you have two paths:
-                            <ol>
-                                <li>Add an account and allow us to generate a password for you</li>
-                                <ul>
-                                    <li>Select 'Create a new password' on the left menu</li>
-                                    <li>Select a service you wish to add, enter your username and hit next.</li>
-                                </ul>
+                        <div class="card-body overflow-auto " id="userinfocard">
+                            <div class="d-grid justify-content-center align-items-center">
+                                <input class="form-control t-transparent mt-3 input-width" type="text" placeholder="Username" value="" aria-label="Disabled input example" disabled>
+                                <input class="form-control t-transparent mt-3 input-width" type="text" placeholder="Email" value="" aria-label="Disabled input example" disabled>
+                                <input class="form-control t-transparent mt-3 input-width" type="text" placeholder="Password" value="" aria-label="Disabled input example" disabled>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="button" class="btn btn-danger" onclick="deleteUser();">Delete Account</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                    style="display: none;">Save</button>
+                                <button type="button" class="btn btn-primary"
+                                    onclick="AddserviceExisting();">Edit</button>
+                            </div>
 
-                                <li>Add an account where you already have a password created</li>
-                                <ul>
-                                    <li>Select 'Add existing details' on the left menu</li>
-                                    <li>Select a service you wish to add, enter your username and hit next.</li>
-                                    <li>Confirm your details and add your already created password.</li>
-                                    <li>If at this point you wish to allow us to create your password, leave the password field blank.</li>
-                                    <li>Hit 'Add'</li>
-                                </ul>
-                                
-                            </ol>
-                            To view or edit the accounts you have added, select 'Password vault' on the left menu.
-                            <ol>
-                                <li>If you wish to view or delete your account details, click view and do as you wish.</li>
-                                <li>If you wish to edit your details, press the edit button on the account you wish to edit for, edit your details as desired, and press save.</li>
-                            </ol>
-                            <u>Remember to log out when you’re done! You can do so by pressing the button on the left menu.</u>
-                            </strong>   
                         </div>
                     </div>
                 </div>
