@@ -116,16 +116,20 @@ async function loginMe() {
   //If successful request
   if (response.ok) {
     const token = await response.json(); //Depending on serverside, could be token or invalid
-    if (token.result != "invalid" || token.result != "Account does not exist") { //If password match
+    if (token.result == "invalid" || token.result == "Account does not exist") { //If password match
+      window.location.replace('/marcus/pages/signup.html');
+      console.log(token.result);
+      alert("Invalid username or password")
+    }
+    else { //If user doesnt exist or invalid token
+
       localStorage.setItem("token", token.result);
       localStorage.setItem("currentuser", username);
       localStorage.setItem("uid", token.uid);
       console.log(token.result);
       console.log(token.uid);
+
       window.location.replace('/marcus/pages/vaultIndex.html');
-    }
-    else { //If user doesnt exist or invalid token
-      console.log(token.result);
     }
 
   }
@@ -151,6 +155,7 @@ async function getUserData() {
   let uid = localStorage.getItem("uid");
   let currentuser = localStorage.getItem("currentuser");
   let token = localStorage.getItem("token");
+
   try {
     const response = await fetch('http://3.220.228.48:8080/viewuser', {
       method: 'POST',
@@ -182,13 +187,31 @@ async function deleteUser() {
   uid = localStorage.getItem("uid");
   let currentuser = localStorage.getItem("currentuser");
   let token = localStorage.getItem("token");
-  const response = await fetch('http://3.220.228.48:8080/delusers', {
-    method: 'DELETE',
-    body: JSON.stringify({ uid, currentuser, token }),
-    headers: { 'Content-Type': 'application/json' }
-  });
-  const data = await response.json();
-  console.log(data);
-  alert("Delete Successful")
-  window.location.href = "/marcus/pages/signup.html";
+  try {
+    const response = await fetch('http://3.220.228.48:8080/delusers', {
+      method: 'DELETE',
+      body: JSON.stringify({ uid, currentuser, token }),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    const data = await response.json();
+    console.log(data);
+    alert("Delete Successful")
+    localStorage.clear();
+    window.location.href = "/marcus/pages/signup.html";
+  } catch (error) {
+
+  }
+
+
+}
+
+function confirmdelete() {
+  let answer = document.getElementById("confirmdeleteinput").value;
+  console.log(answer);
+  if (answer == "confirm") {
+    deleteUser();
+  }
+  else {
+    return;
+  }
 }

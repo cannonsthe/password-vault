@@ -37,7 +37,7 @@ function loginUser(request, respond) {
         userDB.loginUser(username, uid, password, function (error, result) {
             if (error) {
 
-                respond.json({ error: "Account does not exist" });
+                respond.json({ error: "Error" });
             }
             else {
                 // Compare passwords for validity
@@ -159,7 +159,6 @@ function deleteUser(request, respond) {
 }
 
 function updateUserpw(request, respond) {
-
     var password = request.body.password;
     var token = request.body.token;
     var uid = request.params.uid;
