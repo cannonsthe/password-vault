@@ -1,5 +1,6 @@
 "use strict";
 
+const e = require('express');
 var db = require('../../db-connection');
 
 class userDB{
@@ -18,19 +19,9 @@ class userDB{
         db.query(sql, [email, username, password], callback);
     }
 
-    updateUseremail(email, uid, callback){
-        var sql = "UPDATE users SET email = ? WHERE uid = ?";
-        return db.query(sql, [email, uid], callback);
-    }
-
-    updateUsername(username, uid, callback){
+    updateUserdeets(email, password, uid, callback){
         var sql = "UPDATE users SET username = ? WHERE uid = ?";
-        return db.query(sql, [username, uid], callback);
-    }
-
-    updateUserpw(password, uid, callback){
-        var sql = "UPDATE users SET password = ? WHERE uid = ?";
-        return db.query(sql, [password, uid], callback);
+        return db.query(sql, [email, password, uid], callback);
     }
 
     deleteUser(uid, callback){

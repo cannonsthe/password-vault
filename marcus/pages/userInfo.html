@@ -14,7 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body class="header" onload="getUserData();">
+<body class="header user-select-none" onload="getUserData();">
     <div class="row mw-100 mh-100"> <!-- Split Page into 3 columns -->
         <div class="col d-flex justify-content-start">
             <nav class="navbar navbar-expand d-flex flex-column align-items-start" id="sidebar">
@@ -87,8 +87,8 @@
                                     data-bs-target="#confirmdeletemodal">Delete Account</button>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                                     style="display: none;">Save</button>
-                                <button type="button" class="btn btn-primary"
-                                    onclick="AddserviceExisting();">Edit</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#editaccmodal">Edit</button>
                             </div>
 
                         </div>
@@ -97,33 +97,72 @@
             </div>
             <div class="row"></div>
 
+            <div class="">
+                <div><!-- Modal to confirm to delete -->
+                    <div class="modal fade" id="confirmdeletemodal" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="confirmdeletemodalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="confirmdeletemodalLabel">Are you sure you want to
+                                        delete
+                                        your account?</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
 
-            <!-- Modal to confirm to delete -->
-            <div class="modal fade" id="confirmdeletemodal" data-bs-backdrop="static" data-bs-keyboard="false"
-                tabindex="-1" aria-labelledby="confirmdeletemodalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="confirmdeletemodalLabel">Are you sure you want to delete
-                                your account?</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-
-                            <div class="mb-3">
-                                <label for="confirmdeleteinput" class="form-label">Type in "confirm" to delete your
-                                    account.</label>
-                                <input type="text" class="form-control" id="confirmdeleteinput" placeholder="confirm">
+                                    <div class="mb-3">
+                                        <label for="confirmdeleteinput" class="form-label">Type in "confirm" to delete
+                                            your
+                                            account.</label>
+                                        <input type="text" class="form-control" id="confirmdeleteinput"
+                                            placeholder="confirm">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" onclick="confirmdelete();">Delete
+                                        Account</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-danger" onclick="confirmdelete();">Delete Account</button>
+                    </div>
+                    <!-- Modal to Edit -->
+                    <div class="modal fade" id="editaccmodal" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="editaccmodalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="editaccmodalLabel">Edit your account here</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="mb-3">
+                                        <label for="editaccuserinput" class="form-label">You can change your email and password here</label>
+                                        <input type="text" class="form-control" id="editemailinput"
+                                            placeholder="xyz@gmail.com">
+                                        <input type="text" class="form-control mt-3" id="editpasswordinput"
+                                            placeholder="password">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-dark" onclick="updateUser();">Save Changes</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
+
+
         <div class="col">
             <div class="container">
 

@@ -117,7 +117,6 @@ async function loginMe() {
   if (response.ok) {
     const token = await response.json(); //Depending on serverside, could be token or invalid
     if (token.result == "invalid" || token.result == "Account does not exist") { //If password match
-      window.location.replace('/marcus/pages/signup.html');
       console.log(token.result);
       alert("Invalid username or password")
     }
@@ -199,10 +198,29 @@ async function deleteUser() {
     localStorage.clear();
     window.location.href = "/marcus/pages/signup.html";
   } catch (error) {
-
   }
+}
 
+async function updateUser() { //For edit only
+  uid = localStorage.getItem("uid");
+  let currentuser = localStorage.getItem("currentuser");
+  let token = localStorage.getItem("token");
+  let email = document.getElementById("editemailinput").value;
+  let password = document.getElementById("editpasswordinput").value;
 
+  try {
+    const response = await fetch('http://3.220.228.48:8080/upduser', {
+      method: 'PUT',
+      body: JSON.stringify({ uid, currentuser, token, email, password }),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    const data = await response.json();
+    console.log(data);
+    alert("Delete Successful")
+    localStorage.clear();
+    window.location.href = "/marcus/pages/signup.html";
+  } catch (error) {
+  }
 }
 
 function confirmdelete() {

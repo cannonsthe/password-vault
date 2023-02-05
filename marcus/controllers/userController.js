@@ -144,6 +144,7 @@ function deleteUser(request, respond) {
     var currentuser = request.body.currentuser; //currentuser
 
     if (token == jwt.sign(currentuser, secret)) {
+        
         userDB.deleteUser(uid, function (error, result) {
             if (error) {
                 respond.json(error);
@@ -158,25 +159,49 @@ function deleteUser(request, respond) {
     };
 }
 
-function updateUserpw(request, respond) {
+function updateUser(request, respond) {
+    var email = request.body.email;
     var password = request.body.password;
+    var currentuser = request.body.currentuser;
     var token = request.body.token;
-    var uid = request.params.uid;
+    var uid = request.body.uid;
     password = bcrypt.hashSync(password, 10)
 
-    try {
-        var decoded = jwt.verify(token, secret);
-        userDB.updateUserpw(password, uid, function (error, result) {
+    if (token == jwt.sign(currentuser, secret)) {
+
+        userDB.getUser(uid, function (error, result) { //get original details
             if (error) {
                 respond.json(error);
             }
             else {
                 respond.json(result);
             }
-        });
-    } catch (error) {
-        respond.json({ result: "invalid" });
+        })
+
+        var response = result.json();
+        var ogemail = response[0].email;
+        var ogpassword = response[0].password
+
+        if (!email){
+            email =  ogemail;
+        }
+
+        else if (!password){
+            password = ogpassword;
+        }
+
+        userDB.updateUserdeets(email, password ,uid , function (error, result) {
+            if (error) {
+                respond.json(error);
+            }
+            else {
+                respond.json(result);
+            }
+        })
     }
+    else {
+        respond.json({ message: 'invalid token' });
+    };
 
 }
-module.exports = { getAllUser, addUser, deleteUser, loginUser, updateUserpw, getuserData, deleteUser };
+module.exports = { getAllUser, addUser, deleteUser, loginUser, updateUser, getuserData, deleteUser };
