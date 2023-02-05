@@ -35,10 +35,10 @@ const serviceController = require('./marcus/controllers/serviceController')     
 //////////////////////////////////////Route for Users/////////////////////////////////////  
 app.route('/users').get(userController.getAllUser);                                     //
 app.route('/register').post(userController.addUser);                                    //
-app.route('/delusers').delete(userController.deleteUser);//                           //
+app.route('/delusers').delete(userController.deleteUser);//                             //
 app.route('/login').post(userController.loginUser);                                     //
 app.route('/viewuser').post(userController.getuserData);//                              //      
-app.route('/upduser').put(userController.updateUser);//                         //
+app.route('/upduser').put(userController.updateUser);                                   //
 /////////////////////////////////////Route for services///////////////////////////////////
 app.route('/vaultga').post(serviceController.getUserVault);                             // 
 app.route('/vaultgui').post(serviceController.getUserIndiv);                            //

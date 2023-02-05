@@ -202,25 +202,27 @@ async function deleteUser() {
 }
 
 async function updateuser() { //For edit only
-  uid = localStorage.getItem("uid");
+  let uid = localStorage.getItem("uid");
   let currentuser = localStorage.getItem("currentuser");
   let token = localStorage.getItem("token");
   let email = document.getElementById("editemailinput").value;
   let password = document.getElementById("editpasswordinput").value;
 
-  try {
-    const response = await fetch('http://3.220.228.48:8080/upduser', {
-      method: 'PUT',
-      body: JSON.stringify({ uid, currentuser, token, email, password }),
-      headers: { 'Content-Type': 'application/json' }
-    });
-    if (response.ok) {
-      const data = await response.json();
-      console.log(data);
-      alert("Update Successful")
-      return
-    }
-  } catch (error) {
+  console.log(uid, currentuser, token, email, password)
+
+  const response = await fetch('http://3.220.228.48:8080/upduser', {
+    method: 'PUT',
+    body: JSON.stringify({ uid, currentuser, token, email, password }),
+    headers: { 'Content-Type': 'application/json' }
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    console.log(data);
+    alert("Update Successful")
+    return
+  } else {
+    console.error(`Request failed with status code ${response.status}`);
   }
 }
 

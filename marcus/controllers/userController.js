@@ -144,7 +144,7 @@ function deleteUser(request, respond) {
     var currentuser = request.body.currentuser; //currentuser
 
     if (token == jwt.sign(currentuser, secret)) {
-        
+
         userDB.deleteUser(uid, function (error, result) {
             if (error) {
                 respond.json(error);
@@ -166,41 +166,50 @@ function updateUser(request, respond) {
     var token = request.body.token;
     var uid = request.body.uid;
     password = bcrypt.hashSync(password, 10)
+    var responseData = {};
 
     if (token == jwt.sign(currentuser, secret)) {
 
         userDB.getUser(uid, function (error, result) { //get original details
             if (error) {
-                respond.json(error);
+                responseData = {
+                    message: error
+                };
+                respond.json(responseData);
             }
             else {
-                respond.json(result);
+                responseData = result;
+                var ogemail = responseData[0].email;
+                var ogpassword = responseData[0].password
+
+                if (!email) {
+                    email = ogemail;
+                }
+
+                else if (!password) {
+                    password = ogpassword;
+                }
+
+                userDB.updateUserdeets(email, password, uid, function (error, result) {
+                    if (error) {
+                        responseData = {
+                            message: error
+                        };
+                        respond.json(responseData);
+                    }
+                    else {
+                        responseData = result;
+                        respond.json(responseData);
+                    }
+                });
             }
-        })
-
-        var response = result.json();
-        var ogemail = response[0].email;
-        var ogpassword = response[0].password
-
-        if (!email){
-            email =  ogemail;
-        }
-
-        else if (!password){
-            password = ogpassword;
-        }
-
-        userDB.updateUserdeets(email, password ,uid , function (error, result) {
-            if (error) {
-                respond.json(error);
-            }
-            else {
-                respond.json(result);
-            }
-        })
+        });
     }
     else {
-        respond.json({ message: 'invalid token' });
+        responseData = {
+            message: 'invalid token'
+        };
+        respond.json(responseData);
     };
 
 }
