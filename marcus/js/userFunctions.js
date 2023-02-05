@@ -201,7 +201,7 @@ async function deleteUser() {
   }
 }
 
-async function updateUser() { //For edit only
+async function updateuser() { //For edit only
   uid = localStorage.getItem("uid");
   let currentuser = localStorage.getItem("currentuser");
   let token = localStorage.getItem("token");
@@ -214,11 +214,12 @@ async function updateUser() { //For edit only
       body: JSON.stringify({ uid, currentuser, token, email, password }),
       headers: { 'Content-Type': 'application/json' }
     });
-    const data = await response.json();
-    console.log(data);
-    alert("Delete Successful")
-    localStorage.clear();
-    window.location.href = "/marcus/pages/signup.html";
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
+      alert("Update Successful")
+      return
+    }
   } catch (error) {
   }
 }

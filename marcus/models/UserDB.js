@@ -20,7 +20,7 @@ class userDB{
     }
 
     updateUserdeets(email, password, uid, callback){
-        var sql = "UPDATE users SET username = ? WHERE uid = ?";
+        var sql = "UPDATE users SET email = ?, password =? WHERE uid = ?";
         return db.query(sql, [email, password, uid], callback);
     }
 
