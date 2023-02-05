@@ -184,10 +184,12 @@ function updateUser(request, respond) {
 
                 if (!email) {
                     email = ogemail;
+                    console.log(email);
                 }
 
                 else if (!password) {
                     password = ogpassword;
+                    console.log(password)
                 }
 
                 userDB.updateUserdeets(email, password, uid, function (error, result) {
