@@ -165,7 +165,6 @@ function updateUser(request, respond) {
     var currentuser = request.body.currentuser;
     var token = request.body.token;
     var uid = request.body.uid;
-    password = bcrypt.hashSync(password, 10)
     var responseData = {};
 
     if (token == jwt.sign(currentuser, secret)) {
@@ -178,9 +177,10 @@ function updateUser(request, respond) {
                 respond.json(responseData);
             }
             else {
-                responseData = result;
+                responseData = result.json();
                 var ogemail = responseData[0].email;
                 var ogpassword = responseData[0].password
+
 
                 if (!email) {
                     email = ogemail;
@@ -190,6 +190,10 @@ function updateUser(request, respond) {
                 else if (!password) {
                     password = ogpassword;
                     console.log(password)
+                }
+
+                else {
+                    password = bcrypt.hashSync(password, 10)
                 }
 
                 userDB.updateUserdeets(email, password, uid, function (error, result) {
