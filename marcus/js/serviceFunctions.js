@@ -96,37 +96,49 @@ async function displayServiceData(serviceArray) { //Display Indiv rows of accs
   table.html("");
   var serviceCount = 0;
   totalService = serviceArray.length;
-  for (var count = 0; count < totalService; count++) {
-    var service = serviceArray[count].service;
-    var username = serviceArray[count].username;
-    var image = serviceArray[count].image;
-    //var password = serviceArray[count].password;
-    var index = count;
-    var cell = `<tr> \
-       <td> \ 
-         `+ index + `
-       </td > \
-       <td> \ 
-       <img src = `+ image + ` class = "logo-size">
-       </td > \
-       <td> \ 
-         `+ service + `
-       </td > \
-       <td> \ 
-       ` + username + `
-       </td > \
-       <td class="btn-space"> \
-       <button type="button" class="btn btn-outline-dark btn-sm view-btn" value=`+ index + ` onclick=displayIndexData(); data-bs-toggle="modal"
-       data-bs-target="#viewvaultModal">View</button> \
-       </td> \
-       <td class="btn-space">
-       <button type="button" class="btn btn-outline-dark btn-sm view-btn" value=`+ index + ` onclick=editIndexData(); data-bs-toggle="modal"
-       data-bs-target="#editvaultModal">edit</button> \
-       </td> \
-     </tr> `;
+  if (totalService == 0) {
+    var cell =
+      `
+    <div class>
+    <h1 class = "display-6 text-center"> Hello </h1>
+    <p class = "mt-5 text-center text-decoration-underline">You current have no existing accounts, click <a href="/marcus/pages/vaultIndex.html">here</a> on how to create one!</p>
+    </div>
+    `
     table.append(cell);
-    serviceCount++;
   }
+  else {
+    for (var count = 0; count < totalService; count++) {
+      var service = serviceArray[count].service;
+      var username = serviceArray[count].username;
+      var image = serviceArray[count].image;
+      var index = count;
+      var cell = `<tr> \
+         <td> \ 
+           `+ index + `
+         </td > \
+         <td> \ 
+         <img src = `+ image + ` class = "logo-size">
+         </td > \
+         <td> \ 
+           `+ service + `
+         </td > \
+         <td> \ 
+         ` + username + `
+         </td > \
+         <td class="btn-space"> \
+         <button type="button" class="btn btn-outline-dark btn-sm view-btn" value=`+ index + ` onclick=displayIndexData(); data-bs-toggle="modal"
+         data-bs-target="#viewvaultModal">View</button> \
+         </td> \
+         <td class="btn-space">
+         <button type="button" class="btn btn-outline-dark btn-sm view-btn" value=`+ index + ` onclick=editIndexData(); data-bs-toggle="modal"
+         data-bs-target="#editvaultModal">edit</button> \
+         </td> \
+       </tr> `;
+      table.append(cell);
+      serviceCount++;
+    }
+  }
+
 }
 
 function loadModalService() { //Modal for existing password
@@ -152,6 +164,7 @@ function loadModalService() { //Modal for existing password
     var image = "/marcus/images/instagram.jpg"
   }
 
+
   var cell =
     `<div class="d-flex justify-content-center"><img src = ` + image + ` class = "logo-size"></div>
     <div class="row d-flex justify-content-center mb-3 mt-3" id="addsLabelService">`+ service + `</div>\
@@ -168,7 +181,7 @@ async function AddserviceExisting() { //Function to POST for existing password
   let user_id = localStorage.getItem("uid");
   let currentuser = localStorage.getItem("currentuser")
 
-  if (!password){
+  if (!password) {
     password = generatePassword(10)
     console.log("empty pw")
   }
