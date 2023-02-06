@@ -166,9 +166,8 @@ function updateUser(request, respond) {
     var token = request.body.token;
     var uid = request.body.uid;
     var responseData = {};
-
+    //The problem is that a empty string gets hashed.
     if (token == jwt.sign(currentuser, secret)) {
-
         userDB.getUser(uid, function (error, result) { //get original details
             if (error) {
                 responseData = {
@@ -177,7 +176,7 @@ function updateUser(request, respond) {
                 respond.json(responseData);
             }
             else {
-                responseData = result;
+                responseData = result.json();
                 var ogemail = responseData[0].email;
                 var ogpassword = responseData[0].password
 
