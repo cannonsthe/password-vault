@@ -186,7 +186,7 @@ function updateUser(request, respond) {
                     console.log(email);
                 }
 
-                else if (!password) {
+                if (!password) {
                     password = ogpassword;
                     console.log(password)
                 }
