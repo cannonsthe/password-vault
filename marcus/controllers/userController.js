@@ -176,7 +176,7 @@ function updateUser(request, respond) {
                 respond.json(responseData);
             }
             else {
-                responseData = result.json();
+                responseData = result;
                 var ogemail = responseData[0].email;
                 var ogpassword = responseData[0].password
 
