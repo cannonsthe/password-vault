@@ -26,5 +26,14 @@ $('#addsForm').on('change', function () {
     }
 });
 
+$(document).ready(function() {
+    // Show loader on page load
+    $('.loader').removeClass('loader-hidden');
+  
+    // Hide loader after a short delay
+    setTimeout(function() {
+      $('.loader').addClass('loader-hidden');
+    }, 1000);
+  });
 
 

@@ -173,7 +173,6 @@ async function getUserData() {
       `<div class="d-grid justify-content-center align-items-center">
     <input class="form-control t-transparent mt-3 input-width" type="text" placeholder="Username" value=`+ username + ` aria-label="Disabled input example" disabled>
     <input class="form-control t-transparent mt-3 input-width" type="text" placeholder="Email" value=`+ email + ` aria-label="Disabled input example" disabled>
-    <input class="form-control t-transparent mt-3 input-width" type="text" placeholder="Password" value="" aria-label="Disabled input example" disabled>
     </div>`
 
     card.insertAdjacentHTML('beforeend', cell);
