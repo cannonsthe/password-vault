@@ -149,8 +149,8 @@ body {
     content: "";
     width: 75px;
     height: 75px;
-    border: 15px solid darkred;
-    border-top-color: #3F301D;
+    border: 15px solid #323132;
+    border-top-color: #817c85;
     border-radius: 50%;
     animation: loading 0.75s ease infinite;
 }   
