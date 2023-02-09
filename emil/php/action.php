@@ -81,33 +81,72 @@
 	  $stmt->execute();
 	}
 
-	// Checkout and save customer info in the orders table
-	if (isset($_POST['action']) && isset($_POST['action']) == 'order') {
-	  $name = $_POST['name'];
-	  $email = $_POST['email'];
-	  $phone = $_POST['phone'];
-	  $products = $_POST['products'];
-	  $grand_total = $_POST['grand_total'];
-	  $address = $_POST['address'];
-	  $pmode = $_POST['pmode'];
+	//THE KEY FOR ENCRYPTION AND DECRYPTION
+	$key = 'qkwjdiw239&&jdafweihbrhnan&^%$ggdnawhd4njshjwuuO';
 
-	  $data = '';
-
-	  $stmt = $conn->prepare('INSERT INTO orders (name,email,phone,address,pmode,products,amount_paid)VALUES(?,?,?,?,?,?,?)');
-	  $stmt->bind_param('sssssss',$name,$email,$phone,$address,$pmode,$products,$grand_total);
-	  $stmt->execute();
-	  $stmt2 = $conn->prepare('DELETE FROM cart');
-	  $stmt2->execute();
-	  $data .= '<div class="text-center">
-								<h1 class="display-4 mt-2 text-danger">Thank You!</h1>
-								<h2 class="text-success">Your order was placed successfully!</h2>
-								<h4 class="bg-danger text-light rounded p-2">Items Purchased : ' . $products . '</h4>
-								<h4>Your Name : ' . $name . '</h4>
-								<h4>Your E-mail : ' . $email . '</h4>
-								<h4>Your Phone : ' . $phone . '</h4>
-								<h4>Total Amount Paid : ' . number_format($grand_total,2) . '</h4>
-								<h4>Payment Mode : ' . $pmode . '</h4>
-						  </div>';
-	  echo $data;
+	//ENCRYPT FUNCTION
+	function encryptthis($data, $key) {
+	$encryption_key = base64_decode($key);
+	$iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+	$encrypted = openssl_encrypt($data, 'aes-256-cbc', $encryption_key, 0, $iv);
+	return base64_encode($encrypted . '::' . $iv);
 	}
-?>
+	
+	//DECRYPT FUNCTION
+	function decryptthis($data, $key) {
+	$encryption_key = base64_decode($key);
+	list($encrypted_data, $iv) = array_pad(explode('::', base64_decode($data), 2),2,null);
+	return openssl_decrypt($encrypted_data, 'aes-256-cbc', $encryption_key, 0, $iv);
+	}
+
+    // Checkout and save customer info in the orders table
+    if (isset($_POST['action']) && isset($_POST['action']) == 'order') {
+		$name = $_POST['name'];
+		$email = $_POST['email'];
+		$phone = $_POST['phone'];
+		$products = $_POST['products'];
+		$grand_total = $_POST['grand_total'];
+		$address = $_POST['address'];
+		$cardname = $_POST['cardname'];
+	  	$cardnumber = $_POST['cardnumber'];
+	  	$cvv = $_POST['cvv'];
+	  	$expirydate = $_POST['expirydate'];
+	  	$billing_address = $_POST['billing_address'];
+		$cardnameencrypted=encryptthis($cardname, $key);
+		$cardnumberencrypted=encryptthis($cardnumber, $key);
+		$cvvencrypted=encryptthis($cvv, $key);
+		$cardnamedecrypted=decryptthis($cardname, $key);
+		$cardnumberdecrypted=decryptthis($cardnumber, $key);
+		$cvvdecrypted=decryptthis($cvv, $key);
+
+		$data = 'Order has been placed successfully!';
+  
+		$stmt = $conn->prepare('INSERT INTO orders (name,email,phone,address,products,amount_paid)VALUES(?,?,?,?,?,?)');
+		$stmt->bind_param('ssssss',$name,$email,$phone,$address,$products,$grand_total);
+		$stmt->execute();
+		$stmt2 = $conn->prepare('INSERT INTO creditcard (cardname, cardnumber, cvv, expirydate, billing_address)VALUES(?,?,?,?,?)');
+	  	$stmt2->bind_param('sssss',$cardnameencrypted,$cardnumberencrypted,$cvvencrypted,$expirydate,$billing_address);
+	  	$stmt2->execute();
+		$stmt3 = $conn->prepare('DELETE FROM cart');
+		$stmt3->execute();
+
+		echo $data;
+	  }
+
+	// Pay and store credit card details in table
+	//if (isset($_POST['action2']) && isset($_POST['action2']) == 'payment') {
+	  //$cardname = $_POST['cardname'];
+	  //$cardnumber = $_POST['cardnumber'];
+	  //$cvv = $_POST['cvv'];
+	  //$expirydate = $_POST['expirydate'];
+	  //$billing_address = $_POST['billing_address'];
+
+	  //$data = 'Order has been placed successfully!';
+
+	  //$stmt = $conn->prepare('INSERT INTO creditcard (cardname, cardnumber, cvv, expirydate, billing_address)VALUES(?,?,?,?,?)');
+	  //$stmt->bind_param('sssss',$cardname,$cardnumber,$cvv,$expirydate,$billing_address);
+	  //$stmt->execute();
+
+	  //echo($data);
+	//}
+?>	
