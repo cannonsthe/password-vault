@@ -120,7 +120,7 @@ async function displayServiceData(serviceArray) { //Display Indiv rows of accs
          <img src = `+ image + ` class = "logo-size">
          </td > \
          <td> \ 
-           `+ service + `
+           <strong>`+ service + `</strong>
          </td > \
          <td> \ 
          ` + username + `
@@ -253,8 +253,8 @@ function displayIndexData() { //Get row data via view button and display on moda
     var cell =
       `<div class="d-flex justify-content-center"><img src = ` + image + ` class = "logo-size"></div>
       <div class="row d-flex justify-content-center mb-3 mt-3" id="displayLabelService">`+ service + `</div>\
-      <div class="row d-flex justify-content-center" id="displayLabelUsername">`+ username + `</div>
-      <div class="row d-flex justify-content-center" id="displayLabelPassword">`+ password + `</div>`;
+      <div class="row d-flex justify-content-center" id="displayLabelUsername">Username: `+ username + `</div>
+      <div class="row d-flex justify-content-center" id="displayLabelPassword">Password: `+ password + `</div>`;
     table.insertAdjacentHTML('beforeend', cell);
 
     var footercell =
