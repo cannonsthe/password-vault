@@ -128,7 +128,7 @@ async function loginMe() {
       console.log(token.result);
       console.log(token.uid);
 
-      window.location.replace('/marcus/pages/vaultIndex.html');
+      window.location.replace('/marcus/pages/passwordVault.html');
     }
 
   }

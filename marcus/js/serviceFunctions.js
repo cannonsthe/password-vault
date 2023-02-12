@@ -101,7 +101,7 @@ async function displayServiceData(serviceArray) { //Display Indiv rows of accs
       `
     <div class>
     <h1 class = "display-6 text-center"> Hello </h1>
-    <p class = "mt-5 text-center text-decoration-underline">You current have no existing accounts, click <a href="/marcus/pages/vaultIndex.html">here</a> on how to create one!</p>
+    <p class = "mt-5 text-center text-decoration-underline" style="font-size: 18px">You current have no existing accounts, click <a href="/marcus/pages/vaultIndex.html">here</a> on how to create one!</p>
     </div>
     `
     table.append(cell);

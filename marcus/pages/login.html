@@ -14,28 +14,34 @@
 </head>
 
 <body class="header user-select-none">
-    <div>
-        <div>
-            <button onclick="window.history.back()" class="btn btn-outline-dark mt-3 ms-3">Back</button>
-            <h1 class="lead text-center pt-3 display-4"><strong>Log in</strong> </h1>
-        </div>
-        <div class="container d-flex justify-content-center align-items-center">
-            <form class="y-center">
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="LoginEmailUsername" aria-describedby="emailusernameHelp"
-                        placeholder="email or username here">
-                    <label for="LoginUsername" class="form-label">Email address or Username</label>
-                    <div id="emailHelp" class="form-text">We'll never share your details with anyone else.</div>
+    <div class="row mh-100 mw-100">
+        <div class="col"><button onclick="window.history.back()" class="btn btn-outline-dark mt-3 ms-3">Back</button></div>
+        <div class="col">
+            <div class="col">
+                <div>
+                    <h1 class="lead text-center pt-3 display-3"><strong>Log in</strong> </h1>
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="LoginPassword" placeholder="password here">
-                    <label for="LoginPassword" class="form-label">Password</label>
+                <div class="container d-flex justify-content-center align-items-center">
+                    <form class="y-center">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="LoginEmailUsername" aria-describedby="emailusernameHelp"
+                                placeholder="email or username here">
+                            <label for="LoginUsername" class="form-label">Email address or Username</label>
+                            <div id="emailHelp" class="form-text">We'll never share your details with anyone else.</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="LoginPassword" placeholder="password here">
+                            <label for="LoginPassword" class="form-label">Password</label>
+                        </div>
+                        <button onclick="loginMe();" class="btn btn-outline-dark" type="button">Login</button>
+                        <div id="loginHelp" class="form-text"><strong>Don't have an account? Sign up <a href="signup.html">here</a>.</strong> </div>
+                    </form>
                 </div>
-                <button onclick="loginMe();" class="btn btn-outline-dark" type="button">Login</button>
-                <div id="loginHelp" class="form-text"><strong>Don't have an account? Sign up <a href="signup.html">here</a>.</strong> </div>
-            </form>
+            </div>
         </div>
+        <div class="col"></div>
     </div>
+    
 
     <script src="/marcus/js/stateFunctions.js"></script>
     <script src="/marcus/js/userFunctions.js"></script>
