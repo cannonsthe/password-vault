@@ -71,39 +71,49 @@ $allItems = implode(', ', $items);
           <input type="hidden" name="products" value="<?= $allItems; ?>">
           <input type="hidden" name="grand_total" value="<?= $grand_total; ?>">
           <div class="form-group">
+            <label>Enter Name:</label>
             <input type="text" name="name" class="form-control" placeholder="Enter Name" required>
           </div>
           <div class="form-group">
+          <label>Enter E-Mail:</label>
             <input type="email" name="email" class="form-control" placeholder="Enter E-Mail" required>
           </div>
           <div class="form-group">
+          <label>Enter Phone Number:</label>
             <input type="tel" name="phone" inputmode="numeric" pattern="[8-9]{1}[0-9]{7}" class="form-control"
-              placeholder="Enter Phone" required>
+              placeholder="Enter Phone Number" required>
           </div>
           <div class="form-group">
+          <label>Enter Delivery Address:</label>
             <textarea name="address" class="form-control" rows="3" cols="10"
               placeholder="Enter Delivery Address Here..."></textarea>
           </div>
           <h4 class="text-center p-2">Enter Your Credit Card Details</h4>
           <div class="form-group">
+          <label>Enter Cardholder Name:</label>
             <input type="text" name="cardname" class="form-control" placeholder="Enter Cardholder Name" required>
           </div>
           <div class="form-group">
+          <label>Enter Card Number(No Spaces):</label>
             <input type="tel" inputmode="numeric" pattern="[0-9]{16}" autocomplete="cc-number" maxlength="16"
               name="cardnumber" class="form-control" placeholder="Enter Card Number(No Spaces)" required>
           </div>
           <div class="form-group">
+          <label>Enter CVV:</label>
             <input type="tel" inputmode="numeric" pattern="[0-9]{3}" maxlength="3" name="cvv" class="form-control"
               placeholder="Enter CVV" required>
           </div>
           <div class="form-group">
+          <label>Enter Expiry Date:</label>
             <input type="text" pattern= "[0-1]{1}[0-9]{1}[/]{1}[0-9]{2}" maxlength="5" name="expirydate"
               class="form-control" placeholder="Enter Expiry Date (MM/YY)" required>
           </div>
           <div class="form-group">
+          <label>Enter Name:</label>
             <textarea name="billing_address" class="form-control" rows="3" cols="10"
               placeholder="Enter Billing Address Here..."></textarea>
           </div>
+          <label style="font-size:large">Use <a href="paynow.php">Paynow</a> instead</label>
           <div class="form-group">
             <input type="submit" name="submit" value="Place Order" class="btn btn-danger btn-block">
           </div>
