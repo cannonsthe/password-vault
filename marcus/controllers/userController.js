@@ -154,14 +154,6 @@ function deleteUser(request, respond) {
                 respond.json(result);
             }
         })
-        serviceDB.deleteAllAcc(uid, function (error, result) {
-            if (error) {
-                respond.json(error);
-            }
-            else {
-                respond.json(result);
-            }
-        })
     }
     else {
         respond.json({ message: 'invalid token' });

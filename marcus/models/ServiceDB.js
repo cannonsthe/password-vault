@@ -32,12 +32,6 @@ class serviceDB{
         var sql = "UPDATE vault SET service = ?, username = ?, password = ?, image = ? WHERE sid = ?"
         db.query(sql, [service, username, password, image, sid], callback)
     }
-
-    deleteAllAcc(uid,callback){
-        var sql = "DELETE FROM vault WHERE user_id = ?"
-        db.query(sql, [uid], callback)
-    }
-    
 }
 
 module.exports = serviceDB;
