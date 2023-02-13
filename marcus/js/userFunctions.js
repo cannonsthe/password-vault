@@ -181,24 +181,7 @@ async function getUserData() {
   }
 }
 
-async function deleteUser() {
-  uid = localStorage.getItem("uid");
-  let currentuser = localStorage.getItem("currentuser");
-  let token = localStorage.getItem("token");
-  try {
-    const response = await fetch('http://3.220.228.48:8080/delusers', {
-      method: 'DELETE',
-      body: JSON.stringify({ uid, currentuser, token }),
-      headers: { 'Content-Type': 'application/json' }
-    });
-    const data = await response.json();
-    console.log(data);
-    alert("Delete Successful")
-    localStorage.clear();
-    window.location.href = "/marcus/pages/signup.html";
-  } catch (error) {
-  }
-}
+
 
 async function updateuser() { //For edit only
   let uid = localStorage.getItem("uid");
@@ -224,6 +207,25 @@ async function updateuser() { //For edit only
     console.error(`Request failed with status code ${response.status}`);
   }
 }
+
+async function deleteUser() {
+  uid = localStorage.getItem("uid");
+  let currentuser = localStorage.getItem("currentuser");
+  let token = localStorage.getItem("token");
+  try {
+    const response = await fetch('http://3.220.228.48:8080/delusers', {
+      method: 'DELETE',
+      body: JSON.stringify({ uid, currentuser, token }),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    const data = await response.json();
+    console.log(data);
+    alert("Delete Successful")
+    localStorage.clear();
+    window.location.href = "/marcus/pages/signup.html";
+  } catch (error) {
+  }
+} 
 
 function confirmdelete() {
   let answer = document.getElementById("confirmdeleteinput").value;
