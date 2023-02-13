@@ -1,8 +1,8 @@
 <?php
 
-$host = 'aaryan-db.ckohq00bj3ax.us-east-1.rds.amazonaws.com';
-$user = 'admin';
-$pass = '12345678';
+$host = 'localhost';
+$user = 'root';
+$pass = '';
 $dbName = 'scanner';
 $webLink = 'http://localhost/Flowered/';
 $appName = 'Scanner - File & URL Scanner';

@@ -13,30 +13,31 @@
     <link rel="stylesheet" href="assets/css/dashboard.css">
     <title>Malware URL Detector</title>
   </head>
-  <body class="bg-base">
+  <body class="bg-dark">
     <!-- //Include a Alert Popup code -->
     <?php include "layout/alert.php";?>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-orange ">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Malware Scanner</a>
+        <a class="fs-4 text-white" href="#">Malware Scanner</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-5">
                 <li class="nav-item mx-3">
-                <a class="nav-link active" href="index.php">URL Scanner</a>
+                <a class="nav-link active fs-5" href="index.php">URL Scanner</a>
                 </li>
                 <li class="nav-item mx-3">
-                <a class="nav-link" href="file-scanner.php">File Scanner</a>
+                <a class="nav-link  fs-5" href="file-scanner.php">File Scanner</a>
                 </li>
                 
             </ul>
             </div>  
         </div>
     </nav>
-    <div class="container mt-5">
+    </nav>
+    <div class="container mt-5 text-white">
       <div class="text-center">
         <img
           src="assets/images/logo.png"
@@ -44,7 +45,7 @@
           class="mb-3 w-25"
         />
         <h2>Keep Your Web Browsing Safe</h2>
-        <p class=" lead">
+        <p class="fs-3 fw-light">
           Enter a URL to check for malware:
         </p>
       </div>
@@ -57,9 +58,9 @@
             aria-describedby="urlHelp"
             placeholder="Enter URL"
           />
-          <small id="urlHelp" class="form-text text-muted">
-            We'll never share your URL with anyone else.
-          </small>
+          <p id="urlHelp" class="lead text-light">
+            We'll never share your files with anyone else.
+          </p>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

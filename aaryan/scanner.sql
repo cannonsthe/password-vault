@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2023 at 07:17 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
+-- Generation Time: Feb 02, 2023 at 06:00 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.0.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `scanner`
 --
-CREATE DATABASE IF NOT EXISTS `scanner` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `scanner`;
 
 -- --------------------------------------------------------
 
@@ -40,7 +38,7 @@ CREATE TABLE `spam_words` (
 --
 
 INSERT INTO `spam_words` (`id`, `word`, `created_at`) VALUES
-(1, 'Winner', '2023-01-31 17:26:00'),
+(1, 'Win', '2023-01-31 17:26:00'),
 (2, ' GIft', '2023-01-31 17:26:00'),
 (3, 'Free', '2023-01-31 17:27:35'),
 (4, ' Suprise', '2023-01-31 17:27:35'),
@@ -99,7 +97,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `spam_words`
 --
 ALTER TABLE `spam_words`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`
