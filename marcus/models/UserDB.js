@@ -25,7 +25,7 @@ class userDB{
     }
 
     deleteUser(uid, callback){
-        var sql = "DELETE from users WHERE uid = ?; DELETE from vault WHERE user_id = ?";
+        var sql = "DELETE from users WHERE uid = ?";
         return db.query(sql, [uid], callback);
     }
 
