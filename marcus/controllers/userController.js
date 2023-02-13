@@ -7,6 +7,7 @@ var userDB = new UserDB();
 var secret = "seniorsproject"
 const { request } = require('express');
 const { get } = require('jquery');
+const serviceDB = require('../models/ServiceDB');
 
 function loginUser(request, respond) {
     // Get the username and password
@@ -146,6 +147,14 @@ function deleteUser(request, respond) {
     if (token == jwt.sign(currentuser, secret)) {
 
         userDB.deleteUser(uid, function (error, result) {
+            if (error) {
+                respond.json(error);
+            }
+            else {
+                respond.json(result);
+            }
+        })
+        serviceDB.deleteAllAcc(uid, function (error, result) {
             if (error) {
                 respond.json(error);
             }
