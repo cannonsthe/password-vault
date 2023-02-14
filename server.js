@@ -53,6 +53,8 @@ app.route('/vaultupac/').put(serviceController.updateAcc);                      
 const { ROLE, users } = require('./kieron/data')
 const { authUser, authRole } = require('./kieron/basicAuth')
 const projectRouter = require('./kieron/routes/projects')
+const router = express.Router()
+const { projects } = require('./kieron/data')
 app.use('/projects', projectRouter)
 app.get('/', (req, res) => {
   res.send('Home Page')
@@ -70,4 +72,25 @@ function setUser(req, res, next) {
   }
   next()
 }
+
+router.get('/', (req, res) => {
+  res.json(projects)
+})
+
+router.get('/:projectId', setProject, (req, res) => {
+  res.json(req.project)
+})
+
+function setProject(req, res, next) {
+  const projectId = parseInt(req.params.projectId)
+  req.project = projects.find(project => project.id === projectId)
+  
+  if (req.project == null) {
+    res.status(404)
+    return res.send('Project not found')
+  }
+  next()
+}
+
+module.exports = router
 //
