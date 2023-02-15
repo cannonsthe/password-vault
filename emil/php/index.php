@@ -26,7 +26,7 @@
           <a class="nav-link active" href="index.php">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/index.html"><i class="fas fa-th-list mr-2"></i>Categories</a>
+          <a class="nav-link" href="//localhost:5500/"><i class="fas fa-th-list mr-2"></i>Categories</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="checkout.php"><i class="fas fa-money-check-alt mr-2"></i>Checkout</a>

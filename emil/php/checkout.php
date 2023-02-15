@@ -109,7 +109,7 @@ $allItems = implode(', ', $items);
               class="form-control" placeholder="Enter Expiry Date (MM/YY)" required>
           </div>
           <div class="form-group">
-          <label>Enter Name:</label>
+          <label>Enter Billing Address:</label>
             <textarea name="billing_address" class="form-control" rows="3" cols="10"
               placeholder="Enter Billing Address Here..."></textarea>
           </div>
