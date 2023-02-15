@@ -190,6 +190,23 @@ async function updateuser() { //For edit only
   let email = document.getElementById("editemailinput").value;
   let password = document.getElementById("editpasswordinput").value;
 
+  // Validate the username and password
+  if (email) {
+    if (email.length < 5) {
+      alert("Email must be at least 5 characters long");
+      return;
+    }
+  }
+  if (password) {
+    if (password.length < 5) {
+      alert("Password must be at least 5 characters long");
+      return;
+    }
+    if (/[^a-zA-Z0-9]/.test(password)) {
+      alert("Password must only contain alphanumeric characters");
+      return;
+    }
+  }
   console.log(uid, currentuser, token, email, password)
 
   const response = await fetch('http://3.220.228.48:8080/upduser', {
@@ -201,7 +218,7 @@ async function updateuser() { //For edit only
   if (response.ok) {
     const data = await response.json();
     console.log(data);
-    alert("Update Successful")
+    if(!alert('Update Successful')){window.location.reload();}
     return
   } else {
     console.error(`Request failed with status code ${response.status}`);
@@ -225,7 +242,7 @@ async function deleteUser() {
     window.location.href = "/marcus/pages/signup.html";
   } catch (error) {
   }
-} 
+}
 
 function confirmdelete() {
   let answer = document.getElementById("confirmdeleteinput").value;

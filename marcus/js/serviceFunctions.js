@@ -253,7 +253,7 @@ function displayIndexData() { //Get row data via view button and display on moda
     var cell =
       `<div class="d-flex justify-content-center"><img src = ` + image + ` class = "logo-size"></div>
       <div class="row d-flex justify-content-center mb-3 mt-3" id="displayLabelService">`+ service + `</div>\
-      <div class="row d-flex justify-content-center" id="displayLabelUsername">Username: `+ username + `</div>
+      <div class="row d-flex justify-content-center mb-2" id="displayLabelUsername">Username: `+ username + `</div>
       <div class="row d-flex justify-content-center" id="displayLabelPassword">Password: `+ password + `</div>`;
     table.insertAdjacentHTML('beforeend', cell);
 
@@ -333,7 +333,19 @@ async function saveIndexData() { //Update modal
   let username = document.getElementById("editUsername").value;
   let password = document.getElementById("editPassword").value;
   let image = filterImagePost(service);
-  console.log(image)
+  if (!password){
+    alert("Please key in a password");
+    return
+  }
+  if (!service){
+    alert("Please enter a valid service");
+    return
+  }
+  if (!username){
+    alert("Please enter a valid username");
+    return
+  }
+
 
   const response = await fetch("http://3.220.228.48:8080/vaultupac", {
     method: "PUT",
