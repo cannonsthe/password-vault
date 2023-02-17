@@ -195,7 +195,7 @@ function updateUser(request, respond) {
                 else {
                     password = bcrypt.hashSync(password, 10)
                 }
-
+                
                 userDB.updateUserdeets(email, password, uid, function (error, result) {
                     if (error) {
                         responseData = {
