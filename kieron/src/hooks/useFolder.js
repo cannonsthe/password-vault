@@ -76,6 +76,7 @@ export function useFolder(folderId = null, folder = null) {
           type: ACTIONS.UPDATE_FOLDER,
           payload: { folder: ROOT_FOLDER },
         })
+        alert('Missing or insufficient permissions');
       })
   }, [folderId])
 
